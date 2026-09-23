@@ -1,0 +1,1244 @@
+{
+  "source_sha256": "aa6555a1ecf1f2d01304adf420d09aa8be12d9ada0dc059eea3ad977d77267c8",
+  "target_language": "en",
+  "model": "gpt-5.6-terra",
+  "omitted_watermark_region_ids": [],
+  "regions": [
+    {
+      "region_id": "p0001-r0001",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 216.96002841118474,
+        "y": 0.0,
+        "width": 159.7516627107231,
+        "height": 33.47077877316827
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0002",
+      "source_text": "3. – 4. Lebensmonat",
+      "translated_text": "3rd–4th month of life",
+      "geometry": {
+        "x": 225.59525342257518,
+        "y": 16.19553811604916,
+        "width": 88.15125532461072,
+        "height": 10.79702541069944
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0003",
+      "source_text": "U4",
+      "translated_text": "U4",
+      "geometry": {
+        "x": 344.68939837133496,
+        "y": 8.997521175582868,
+        "width": 24.106669823464973,
+        "height": 16.19553811604916
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0004",
+      "source_text": "Anamnese",
+      "translated_text": "Medical history",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 64.78215246419664,
+        "width": 85.27284698748058,
+        "height": 17.275240657119106
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0005",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 215.1610232004784,
+        "y": 63.34254907610339,
+        "width": 18.709654191345948,
+        "height": 19.074744892235678
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0006",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 232.071672181118,
+        "y": 65.14205331121997,
+        "width": 144.64001894078984,
+        "height": 15.475736422002532
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0007",
+      "source_text": "Zutreffendes bitte ankreuzen!",
+      "translated_text": "Please check as applicable!",
+      "geometry": {
+        "x": 241.06669823464972,
+        "y": 68.74106178145311,
+        "width": 121.97255328588993,
+        "height": 8.637620328559553
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0008",
+      "source_text": "Aktuelle Anamnese des Kindes:",
+      "translated_text": "Child's current medical history:",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 107.61035325997109,
+        "width": 125.21076266516134,
+        "height": 8.997521175582868
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0009",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 118.40737867067054,
+        "width": 8.635225011390437,
+        "height": 7.917818634512924
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0010",
+      "source_text": "schwerwiegende Erkrankungen seit\nder letzten Untersuchung, Operatio-\nnen, Krampfanfälle",
+      "translated_text": "serious illnesses since\nthe last examination, opera-\ntions, seizures",
+      "geometry": {
+        "x": 56.488763616179114,
+        "y": 119.48708121174049,
+        "width": 146.43902415149617,
+        "height": 31.671274538051694
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0011",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 154.397463373002,
+        "width": 8.635225011390437,
+        "height": 8.277719481536238
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0012",
+      "source_text": "Schwierigkeiten beim Trinken und Füt-\ntern, Erbrechen, Schluckstörungen",
+      "translated_text": "difficulty drinking and feed-\ning, vomiting, swallowing disorders",
+      "geometry": {
+        "x": 56.488763616179114,
+        "y": 155.11726506704863,
+        "width": 144.9998199829311,
+        "height": 20.51434828032894
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0013",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 215.1610232004784,
+        "y": 106.17074987187785,
+        "width": 8.635225011390437,
+        "height": 8.277719481536238
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0014",
+      "source_text": "abnorme Stühle (Stuhlfarbe mit\nStuhlfarbkarte erfragen), Obstipation",
+      "translated_text": "abnormal stools (ask about stool color using\nthe stool color chart), constipation",
+      "geometry": {
+        "x": 229.19326384398786,
+        "y": 107.25045241294778,
+        "width": 144.64001894078984,
+        "height": 20.51434828032894
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0015",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 215.1610232004784,
+        "y": 130.28410662243994,
+        "width": 8.635225011390437,
+        "height": 8.277719481536238
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0016",
+      "source_text": "auffälliges Schreien",
+      "translated_text": "unusual crying",
+      "geometry": {
+        "x": 229.19326384398786,
+        "y": 131.36380916350987,
+        "width": 91.02966366174087,
+        "height": 9.357422022606183
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0017",
+      "source_text": "Sozialanamnese:",
+      "translated_text": "Social history:",
+      "geometry": {
+        "x": 215.1610232004784,
+        "y": 155.47716591407195,
+        "width": 65.12398862756955,
+        "height": 8.997521175582868
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0018",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 215.1610232004784,
+        "y": 166.2741913247714,
+        "width": 8.635225011390437,
+        "height": 8.277719481536238
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0019",
+      "source_text": "Betreuungssituation",
+      "translated_text": "Care situation",
+      "geometry": {
+        "x": 229.19326384398786,
+        "y": 167.35389386584134,
+        "width": 80.95523448178535,
+        "height": 8.997521175582868
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0020",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 215.1610232004784,
+        "y": 178.5108201235641,
+        "width": 8.635225011390437,
+        "height": 8.277719481536238
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0021",
+      "source_text": "besondere Belastungen in der Familie",
+      "translated_text": "special burdens in the family",
+      "geometry": {
+        "x": 229.19326384398786,
+        "y": 179.59052266463405,
+        "width": 144.9998199829311,
+        "height": 8.997521175582868
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0022",
+      "source_text": "Orientierende Beurteilung der Entwicklung",
+      "translated_text": "Guidance assessment of development",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 232.4959471770613,
+        "width": 337.1335764863683,
+        "height": 18.714844045212367
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0023",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 258.40880816273994,
+        "width": 19.429256275628486,
+        "height": 19.074744892235678
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0024",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 59.726972995450524,
+        "y": 260.20831239785656,
+        "width": 316.9847181264573,
+        "height": 15.475736422002532
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0025",
+      "source_text": "Nur ankreuzen, wenn die Items NICHT erfüllt werden!",
+      "translated_text": "Tick only if the items are NOT met!",
+      "geometry": {
+        "x": 68.36219800684097,
+        "y": 264.5271225621363,
+        "width": 224.1560492540101,
+        "height": 8.637620328559553
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0026",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 297.99790133530456,
+        "width": 8.635225011390437,
+        "height": 8.637620328559553
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0027",
+      "source_text": "Grobmotorik:",
+      "translated_text": "Gross motor skills:",
+      "geometry": {
+        "x": 56.488763616179114,
+        "y": 299.0776038763745,
+        "width": 54.3299573633315,
+        "height": 8.997521175582868
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0028",
+      "source_text": "Kräftiges alternierendes und beidsei-\ntiges Beugen und Strecken der Arme\nund Beine. Hält den Kopf in der Sitz-\nhaltung aufrecht, mind. 30 Sekunden.\nBauchlage wird toleriert, Abstützen\nauf den Unterarmen, der Kopf wird in\nder Bauchlage zwischen 40° und 90°\nmindestens eine Minute gehoben.",
+      "translated_text": "Strong alternating and bilateral flexion\nand extension of the arms and legs.\nHolds head upright while sitting for at\nleast 30 seconds. Tolerates prone\nposition, supports on forearms, raises\nhead between 40° and 90° when prone\nfor at least one minute.",
+      "geometry": {
+        "x": 56.488763616179114,
+        "y": 312.0340343692138,
+        "width": 144.64001894078984,
+        "height": 91.41481514392194
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0029",
+      "source_text": "Quellen eines bekannten Geräusches\nzu sehen.",
+      "translated_text": "to see the source of a familiar sound.",
+      "geometry": {
+        "x": 229.19326384398786,
+        "y": 299.43750472339786,
+        "width": 137.80379914010572,
+        "height": 20.51434828032894
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0030",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 215.1610232004784,
+        "y": 334.3478868846594,
+        "width": 8.635225011390437,
+        "height": 8.277719481536238
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0031",
+      "source_text": "Feinmotorik:",
+      "translated_text": "Fine motor skills:",
+      "geometry": {
+        "x": 229.19326384398786,
+        "y": 335.4275894257293,
+        "width": 54.68975840547277,
+        "height": 8.997521175582868
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0032",
+      "source_text": "Hände können spontan zur Körper-\nmitte gebracht werden.",
+      "translated_text": "Hands can spontaneously be brought\nto the midline.",
+      "geometry": {
+        "x": 229.19326384398786,
+        "y": 348.02411907154533,
+        "width": 139.96260539295335,
+        "height": 20.51434828032894
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0033",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 215.1610232004784,
+        "y": 382.2146995387602,
+        "width": 8.635225011390437,
+        "height": 8.637620328559553
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0034",
+      "source_text": "Soziale/emotionale Kompetenz:",
+      "translated_text": "Social/emotional competence:",
+      "geometry": {
+        "x": 229.19326384398786,
+        "y": 384.0142037738768,
+        "width": 141.76161060365968,
+        "height": 8.997521175582868
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0035",
+      "source_text": "Kind freut sich über Zuwendung,\nBlickkontakt kann gehalten werden.\nReaktion auf Ansprache, erwidert\nLächeln einer Bezugsperson („soziales\nLächeln“).",
+      "translated_text": "Child enjoys attention and can maintain\neye contact. Responds when spoken to,\nreturns a caregiver’s smile (“social\nsmile”).",
+      "geometry": {
+        "x": 229.19326384398786,
+        "y": 396.2508325726695,
+        "width": 142.48121268794222,
+        "height": 55.06482959456715
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0036",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 418.2047842410917,
+        "width": 8.635225011390437,
+        "height": 8.277719481536238
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0037",
+      "source_text": "Perzeption/Kognition:",
+      "translated_text": "Perception/cognition:",
+      "geometry": {
+        "x": 56.488763616179114,
+        "y": 419.64438762918496,
+        "width": 89.59045949317579,
+        "height": 8.997521175582868
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0038",
+      "source_text": "Fixiert ein bewegtes Gesicht und folgt\nihm. Versucht durch Kopfdrehen,",
+      "translated_text": "Fixates on a moving face and follows\nit. Tries by turning the head,",
+      "geometry": {
+        "x": 56.488763616179114,
+        "y": 431.88101642797767,
+        "width": 148.95763144648504,
+        "height": 20.51434828032894
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0039",
+      "source_text": "Beobachtung der Interaktion",
+      "translated_text": "Observation of interaction",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 491.6245570338479,
+        "width": 115.85593556948837,
+        "height": 8.997521175582868
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0040",
+      "source_text": "Insbesondere die folgenden Reaktionen des Kindes können der Ärztin oder dem\nArzt als Hinweise zur Einschätzung von Stimmung, Kommunikations- und Regulations-\nmöglichkeiten des Kindes im Kontakt mit seiner primären Bezugsperson und als weitere\nGrundlage für das Ärztin- oder Arzt-Elterngespräch dienen:",
+      "translated_text": "In particular, the following child reactions may help the physician\nassess the child's mood, communication and self-regulation\nabilities in contact with the primary caregiver and support the\nphysician-parent discussion:",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 503.5012849856173,
+        "width": 331.7365608542493,
+        "height": 43.90790333684439
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0041",
+      "source_text": "25",
+      "translated_text": "25",
+      "geometry": {
+        "x": 393.2625390604062,
+        "y": 571.5225450730237,
+        "width": 9.714628137814243,
+        "height": 7.198016940466294
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0001",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 0.0,
+        "width": 160.11146375286435,
+        "height": 33.47077877316827
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0002",
+      "source_text": "U4",
+      "translated_text": "U4",
+      "geometry": {
+        "x": 51.09174798406009,
+        "y": 8.997521175582868,
+        "width": 24.46647086560624,
+        "height": 16.555438963072476
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0003",
+      "source_text": "3. – 4. Lebensmonat",
+      "translated_text": "3rd–4th month of life",
+      "geometry": {
+        "x": 105.4217053473916,
+        "y": 16.91533981009579,
+        "width": 88.15125532461072,
+        "height": 10.437124563676127
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0004",
+      "source_text": "Ergebnisse",
+      "translated_text": "Results",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 64.78215246419664,
+        "width": 85.9924490717631,
+        "height": 17.275240657119106
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0005",
+      "source_text": "Relevante anamnestische Ergebnisse:",
+      "translated_text": "Relevant medical history findings:",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 89.61531090880536,
+        "width": 146.43902415149617,
+        "height": 8.997521175582868
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0006",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 101.85193970759806,
+        "width": 334.9747702335207,
+        "height": 0.7198016940466294
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0007",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 126.32519730518347,
+        "width": 334.9747702335207,
+        "height": 0.7198016940466294
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0008",
+      "source_text": "Orientierende Beurteilung der Entwicklung altersgemäß:",
+      "translated_text": "Age-appropriate developmental screening:",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 143.9603388093259,
+        "width": 236.38928468681323,
+        "height": 8.997521175582868
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0009",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 312.3073045786208,
+        "y": 142.1608345742093,
+        "width": 8.635225011390437,
+        "height": 8.277719481536238
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0010",
+      "source_text": "ja",
+      "translated_text": "yes",
+      "geometry": {
+        "x": 325.97974417998904,
+        "y": 143.60043796230258,
+        "width": 8.635225011390437,
+        "height": 7.917818634512924
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0011",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 346.12860253990004,
+        "y": 142.1608345742093,
+        "width": 8.635225011390437,
+        "height": 8.277719481536238
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0012",
+      "source_text": "nein",
+      "translated_text": "no",
+      "geometry": {
+        "x": 360.1608431834095,
+        "y": 143.60043796230258,
+        "width": 16.191046896357072,
+        "height": 7.917818634512924
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0013",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 155.83706676109526,
+        "width": 334.9747702335207,
+        "height": 0.7198016940466294
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0014",
+      "source_text": "Körpermaße:",
+      "translated_text": "Body measurements:",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 166.99399301881803,
+        "width": 51.81135006834263,
+        "height": 8.997521175582868
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0015",
+      "source_text": "Körpergewicht in g",
+      "translated_text": "Body weight in g",
+      "geometry": {
+        "x": 123.05195641231374,
+        "y": 167.35389386584134,
+        "width": 72.67981051253618,
+        "height": 8.277719481536238
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0016",
+      "source_text": "Körperlänge in cm",
+      "translated_text": "Body length in cm",
+      "geometry": {
+        "x": 216.60022736904347,
+        "y": 167.35389386584134,
+        "width": 69.44160113326477,
+        "height": 8.277719481536238
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0017",
+      "source_text": "Kopfumfang in cm",
+      "translated_text": "Head circumference in cm",
+      "geometry": {
+        "x": 306.5504879043605,
+        "y": 167.35389386584134,
+        "width": 70.16120321754731,
+        "height": 8.277719481536238
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0018",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 122.3323543280312,
+        "y": 177.43111758249415,
+        "width": 73.03961155467745,
+        "height": 14.396033880932588
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0019",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 230.27266697041168,
+        "y": 177.43111758249415,
+        "width": 43.53592609909346,
+        "height": 14.396033880932588
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0020",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 328.1385504328366,
+        "y": 177.43111758249415,
+        "width": 28.78408337130146,
+        "height": 14.396033880932588
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0021",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 42.45652297266965,
+        "y": 204.06378026221944,
+        "width": 334.2551681492382,
+        "height": 0.7198016940466294
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0022",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 42.45652297266965,
+        "y": 297.99790133530456,
+        "width": 334.2551681492382,
+        "height": 0.7198016940466294
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0023",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 42.45652297266965,
+        "y": 204.06378026221944,
+        "width": 0.7196020842825365,
+        "height": 94.29402192010845
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0024",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 376.3518900797666,
+        "y": 204.06378026221944,
+        "width": 0.7196020842825365,
+        "height": 94.29402192010845
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0025",
+      "source_text": "Gesamtergebnis:",
+      "translated_text": "Overall result:",
+      "geometry": {
+        "x": 55.76916153189658,
+        "y": 213.0613014378023,
+        "width": 82.7542396924917,
+        "height": 9.717322869629497
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0026",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 216.96002841118474,
+        "y": 211.98159889673235,
+        "width": 8.635225011390437,
+        "height": 8.277719481536238
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0027",
+      "source_text": "keine Auffälligkeiten",
+      "translated_text": "No abnormalities",
+      "geometry": {
+        "x": 230.99226905469422,
+        "y": 213.78110313184894,
+        "width": 78.0768261446552,
+        "height": 7.917818634512924
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0028",
+      "source_text": "Auffälligkeiten zur Beobachtung:",
+      "translated_text": "Abnormalities to monitor:",
+      "geometry": {
+        "x": 55.76916153189658,
+        "y": 233.93555056515456,
+        "width": 134.20578871869304,
+        "height": 8.277719481536238
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0029",
+      "source_text": "weitere Maßnahmen vereinbart:",
+      "translated_text": "Further measures agreed:",
+      "geometry": {
+        "x": 216.96002841118474,
+        "y": 233.93555056515456,
+        "width": 110.45891993736934,
+        "height": 8.277719481536238
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0030",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 55.76916153189658,
+        "y": 244.37267512883068,
+        "width": 150.03703457290885,
+        "height": 0.7198016940466294
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0031",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 216.96002841118474,
+        "y": 244.37267512883068,
+        "width": 150.03703457290885,
+        "height": 0.7198016940466294
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0032",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 55.76916153189658,
+        "y": 268.12613103236947,
+        "width": 150.03703457290885,
+        "height": 0.7198016940466294
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0033",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 216.96002841118474,
+        "y": 268.12613103236947,
+        "width": 150.03703457290885,
+        "height": 0.7198016940466294
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0034",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 55.76916153189658,
+        "y": 292.2394877829315,
+        "width": 150.03703457290885,
+        "height": 0.7198016940466294
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0035",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 216.96002841118474,
+        "y": 292.2394877829315,
+        "width": 150.03703457290885,
+        "height": 0.7198016940466294
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0036",
+      "source_text": "Prüfung, Aufklärung und ggf. Veranlassung der Durchführung von:",
+      "translated_text": "Examination, counseling and, if necessary, arranging:",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 312.0340343692138,
+        "width": 290.35944100800344,
+        "height": 8.997521175582868
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0037",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 323.9107623209832,
+        "width": 334.9747702335207,
+        "height": 0.7198016940466294
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0038",
+      "source_text": "• Neugeborenen-Hörscreening",
+      "translated_text": "• Newborn hearing screening",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 330.0290767203796,
+        "width": 122.3323543280312,
+        "height": 8.637620328559553
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0039",
+      "source_text": "• Screening auf Hüftgelenksdysplasie und -luxation",
+      "translated_text": "• Screening for hip dysplasia and dislocation",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 341.905804672149,
+        "width": 201.12878255696896,
+        "height": 8.637620328559553
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0040",
+      "source_text": "Impfstatus beim Verlassen der Praxis vollständig:",
+      "translated_text": "Vaccination status complete upon leaving the practice:",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 363.85975634057115,
+        "width": 188.1759450398833,
+        "height": 8.637620328559553
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0041",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 234.5902794761069,
+        "y": 362.0602521054546,
+        "width": 8.635225011390437,
+        "height": 8.277719481536238
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0042",
+      "source_text": "ja",
+      "translated_text": "yes",
+      "geometry": {
+        "x": 246.82351490891,
+        "y": 363.85975634057115,
+        "width": 8.27542396924917,
+        "height": 7.917818634512924
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0043",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 261.93515867884327,
+        "y": 362.0602521054546,
+        "width": 8.635225011390437,
+        "height": 8.277719481536238
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0044",
+      "source_text": "nein",
+      "translated_text": "no",
+      "geometry": {
+        "x": 274.1683941116464,
+        "y": 363.85975634057115,
+        "width": 16.191046896357072,
+        "height": 7.917818634512924
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0045",
+      "source_text": "fehlende Impfungen:",
+      "translated_text": "missing vaccinations:",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 380.05529445662035,
+        "width": 79.51603031322028,
+        "height": 8.637620328559553
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0046",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 125.93036474944388,
+        "y": 375.73648429234055,
+        "width": 250.78132637246395,
+        "height": 14.396033880932588
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0047",
+      "source_text": "Bemerkungen:",
+      "translated_text": "Comments:",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 402.0092461250425,
+        "width": 51.81135006834263,
+        "height": 8.277719481536238
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0048",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 413.5260732297886,
+        "width": 334.9747702335207,
+        "height": 0.7198016940466294
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0049",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 437.63942998035066,
+        "width": 334.9747702335207,
+        "height": 0.7198016940466294
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0050",
+      "source_text": "Terminvereinbarungen",
+      "translated_text": "Appointments",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 449.87605877914336,
+        "width": 81.31503552392662,
+        "height": 8.997521175582868
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0051",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 461.39288588388945,
+        "width": 334.9747702335207,
+        "height": 0.7198016940466294
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0052",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 466.07159689519256,
+        "width": 161.9104689635707,
+        "height": 26.63266267972529
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0053",
+      "source_text": "nächster Impftermin am:",
+      "translated_text": "next vaccination appointment on:",
+      "geometry": {
+        "x": 45.69473235194106,
+        "y": 482.9869367052883,
+        "width": 91.7492657460234,
+        "height": 8.277719481536238
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0054",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 215.1610232004784,
+        "y": 466.07159689519256,
+        "width": 161.55066792142944,
+        "height": 26.63266267972529
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0055",
+      "source_text": "U5 am:",
+      "translated_text": "U5 am:",
+      "geometry": {
+        "x": 219.11883466403236,
+        "y": 482.9869367052883,
+        "width": 31.302690666290335,
+        "height": 8.277719481536238
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0056",
+      "source_text": "Stempel",
+      "translated_text": "Stamp",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 504.2210866796639,
+        "width": 32.02229275057287,
+        "height": 8.997521175582868
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0057",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 515.73791378441,
+        "width": 160.47126479500562,
+        "height": 0.7198016940466294
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0058",
+      "source_text": "Unterschrift und Datum:",
+      "translated_text": "Signature and date:",
+      "geometry": {
+        "x": 215.1610232004784,
+        "y": 504.2210866796639,
+        "width": 85.9924490717631,
+        "height": 8.997521175582868
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0059",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 215.1610232004784,
+        "y": 515.73791378441,
+        "width": 160.11146375286435,
+        "height": 0.7198016940466294
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0060",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 42.09672193052838,
+        "y": 563.2448255914875,
+        "width": 160.47126479500562,
+        "height": 0.7198016940466294
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0061",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 215.1610232004784,
+        "y": 563.2448255914875,
+        "width": 160.11146375286435,
+        "height": 0.7198016940466294
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0002-r0062",
+      "source_text": "28",
+      "translated_text": "28",
+      "geometry": {
+        "x": 16.55084793849834,
+        "y": 571.5225450730237,
+        "width": 9.714628137814243,
+        "height": 7.198016940466294
+      },
+      "status": "validated"
+    }
+  ]
+}

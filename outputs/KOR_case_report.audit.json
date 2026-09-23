@@ -1,0 +1,260 @@
+{
+  "source_sha256": "3f9204724f0491b2b1fae105dd7acf16c38e77af1160b769dcb4878cccf37fb5",
+  "target_language": "en",
+  "model": "gpt-5.6-terra",
+  "omitted_watermark_region_ids": [],
+  "regions": [
+    {
+      "region_id": "p0001-r0001",
+      "source_text": "356",
+      "translated_text": "356",
+      "geometry": {
+        "x": 286.5240478515625,
+        "y": 25.912288591802287,
+        "width": 16.55792236328125,
+        "height": 10.796786913250953
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0002",
+      "source_text": null,
+      "translated_text": "",
+      "geometry": {
+        "x": 42.47467041015625,
+        "y": 42.10746896167871,
+        "width": 504.65667724609375,
+        "height": 1.0796786913250953
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0003",
+      "source_text": "Yu-Hun Jeong, et al.",
+      "translated_text": "Yu-Hun Jeong, et al.",
+      "geometry": {
+        "x": 257.7276611328125,
+        "y": 51.824577183604575,
+        "width": 73.07083129882812,
+        "height": 8.997322427709127
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0004",
+      "source_text": "강속도 및 C-반응 단백 상승 소견을 보여 teicoplanin으로 교체하\n였다. 술 후 총 8주간 항생제 투여 후 적혈구 침강속도 61 mm/h로\n감소하고 C-반응 단백은 정상화되었으며 술 후 4주째 시행한 자\n기공명영상 검사상 SSA가 관찰되지 않고 요통이 호전되어 퇴원\n하였다(Fig. 2). 술 후 8개월 최종 추시 소견상 적혈구 침강속도는\n22 mm/h, C-반응 단백은 <0.1 mg/dl로 염증의 재발 소견은 보이\n지 않았으며 요통도 없었다.",
+      "translated_text": "Due to elevated erythrocyte sedimentation rate and C-반응 protein, antibiotics were changed to teicoplanin.\nAfter 8주 of postoperative antibiotics, the erythrocyte sedimentation rate decreased to 61 mm/h,\nand C-반응 protein normalized. At 4주 postoperatively, magnetic resonance imaging showed no\nSSA, and low back pain improved; the patient was discharged\n(Fig. 2). At the final follow-up 8개월 after surgery, the erythrocyte sedimentation rate was\n22 mm/h and C-반응 protein was <0.1 mg/dl, with no evidence of recurrent inflammation\nor low back pain.",
+      "geometry": {
+        "x": 42.47467041015625,
+        "y": 82.05558054070724,
+        "width": 245.12924194335938,
+        "height": 99.33043960190876
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0005",
+      "source_text": "SSA의 치료는 응급으로 시행되어야 하며 광범위한 SSA의 경\n우라도 구획확가 동반되지 않는 한 제한적인 수술적 배농술과 광\n범위 정맥항생제의 사용만으로도 우수한 치료 결과를 보이고 있\n다.⁸) 수술은 농양이 경막의 전방에 존재할 경우 전방 도달법, 후방\n에 존재할 때는 추궁판 절제술에 의한 후방 도달법에 의한 배농\n술을 시행할 수 있다.⁹) 척추의 골수염이 동반되어 있는 경우 최소\n8주, 그렇지 않은 경우 4주 이상 정맥항생제를 사용해야 한다. 본\n증례에서는 제5-6 흉추간 화농성 척추 추간판염과 함께 발생한\n제6흉추-제3요추간 광범위 SSA를 자기공명영상을 통해 확인하\n였다. 자기공명영상에서 SSA의 신경관 침범 비율이 제8 흉추 부\n위에서 가장 높았고 이로 인한 신경압박 정도도 가장 심하여 이\n부위를 후궁 절제술 위치로 선택하였다.",
+      "translated_text": "SSA requires emergency treatment. Even in extensive SSA, excellent outcomes can be achieved\nwith limited surgical drainage and broad-spectrum intravenous antibiotics unless compartment\nsyndrome is present.⁸) Drainage can be performed through an anterior approach when the abscess\nis anterior to the dura, or through a posterior approach with laminectomy when it is posterior.⁹)\nWhen vertebral osteomyelitis is present, intravenous antibiotics should be given for at least\n8주; otherwise, for at least 4주. In this case, extensive SSA from 제6흉추-제3요추 associated with\npyogenic spondylodiscitis at 제5-6 흉추 was confirmed by magnetic resonance imaging.\nAt 제8 흉추, SSA occupied the greatest proportion of the spinal canal and caused the most severe\nneural compression; thus, this level was selected for laminectomy.",
+      "geometry": {
+        "x": 303.4419250488281,
+        "y": 82.05558054070724,
+        "width": 244.40933227539062,
+        "height": 174.90794799466542
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0006",
+      "source_text": "고 찰",
+      "translated_text": "Discussion",
+      "geometry": {
+        "x": 144.70184326171875,
+        "y": 202.61970107200955,
+        "width": 58.672637939453125,
+        "height": 14.035822987226238
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0007",
+      "source_text": "SSA는 척추 경막외 농양에 비하여 발생률이 드문 질환으로 경막\n외 농양과 마찬가지로 초기 증상이 비특이적이며, 진단이 늦어질\n경우에 신경학적 결손 발생 및 사망에 이를 수 있는 치명적인 질\n환이다. Velissaris 등²)에 의하면 2009년까지 65예의 증례가 보고된\n바 있으며 그 이후의 증례보고 또한 매우 드물며 현재까지 정확\n히 몇 예가 보고되어 있는지 정리되어 있는 논문은 없다.\n균주는 대부분 포도상 구균이 가장 많은 원인으로 알려져 있\n다. 본 증례의 경우에 다약제 내성 E. faecium이 균주로 동정되어\n기존의 보고와는 달리 비특이적인 균주로 생각된다. 요추부가 가\n장 많은 호발지역으로 알려져 있으며 호발 연령은 60세에서 70세\n사이가 가장 많은 유병률을 보인다.",
+      "translated_text": "SSA is rarer than spinal epidural abscess. Like epidural abscess, its initial symptoms are\nnonspecific, and delayed diagnosis can lead to neurologic deficits and death. According to\nVelissaris et al.²), 65예 had been reported by 2009년. Subsequent case reports have also been\nvery rare, and no study has summarized the exact number reported to date.\nStaphylococci are known to be the most common causative organisms. In this case,\nmultidrug-resistant E. faecium was identified, representing an atypical organism compared with\nprevious reports. The lumbar region is the most common site, and prevalence is highest between\n60세 and 70세.",
+      "geometry": {
+        "x": 42.47467041015625,
+        "y": 232.49081153200385,
+        "width": 244.769287109375,
+        "height": 158.35287472768064
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0008",
+      "source_text": "이에 제5-6흉추의 소파술 및 전방유합술, 제8 흉추 후궁 절제\n술, 경막 절개 후 SSA 배농술을 시행하였고 경막을 봉합하였으며\n이후 지속적인 항생제 정맥 투여를 통하여 증상의 호전을 보였\n다.",
+      "translated_text": "Accordingly, curettage and anterior fusion at 제5-6흉추, laminectomy at 제8 흉추, and SSA drainage\nafter dural incision were performed, followed by dural closure. Symptoms improved with\ncontinued intravenous antibiotic therapy.",
+      "geometry": {
+        "x": 303.8018798828125,
+        "y": 261.64213619778144,
+        "width": 242.96951293945312,
+        "height": 53.264148772038034
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0009",
+      "source_text": "저자들은 비특이적 증상으로 내원한 환자에서 흉추부의 감염\n성 척추 추간판염에 동반된 광범위한 SSA를 경험하였고 적절한\n감압 및 배농술과 정맥 항생제 요법으로 성공적인 치료를 시행하\n였기에 문헌고찰과 함께 보고하는 바이다.",
+      "translated_text": "The authors encountered extensive SSA associated with infectious thoracic spondylodiscitis\nin a patient presenting with nonspecific symptoms. Successful treatment was achieved with\nappropriate decompression, drainage, and intravenous antibiotics; thus, this case is reported\nwith a literature review.",
+      "geometry": {
+        "x": 304.1618347167969,
+        "y": 321.7442500148784,
+        "width": 242.24960327148438,
+        "height": 54.70372036047149
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0010",
+      "source_text": "SSA의 발생기전은 크게 세 가지로 분류되며 혈행성 전파와 의\n인적 전파(척추 천자, 디스크 조영술, 이전 수술 기왕력), 근접전\n파로 구분될 수 있다.³,⁴) 본 증례에서는 혈액 균 배양검사와 수술\n중 시행한 배양검사의 균주가 각각 달라 혈행성 전파보다는 침치\n료로 인한 국소 감염에 이은 근접 전파가 발생기전으로 생각된\n다.",
+      "translated_text": "The pathogenesis of SSA is broadly classified into three routes: hematogenous spread,\niatrogenic spread (spinal puncture, discography, or prior surgery), and contiguous spread.³,⁴)\nIn this case, the organisms from blood culture and intraoperative culture differed; therefore,\ncontiguous spread following local infection due to acupuncture, rather than hematogenous\nspread, was considered the mechanism.",
+      "geometry": {
+        "x": 42.47467041015625,
+        "y": 396.9618655105267,
+        "width": 244.769287109375,
+        "height": 83.4951521291407
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0011",
+      "source_text": "CONFLICTS OF INTEREST",
+      "translated_text": "CONFLICTS OF INTEREST",
+      "geometry": {
+        "x": 339.07745361328125,
+        "y": 398.4014370989602,
+        "width": 172.05841064453125,
+        "height": 14.395715884334603
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0012",
+      "source_text": "The authors have nothing to disclose.",
+      "translated_text": "The authors have nothing to disclose.",
+      "geometry": {
+        "x": 303.8018798828125,
+        "y": 427.9126546618461,
+        "width": 145.4217529296875,
+        "height": 10.077001119034222
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0013",
+      "source_text": "REFERENCES",
+      "translated_text": "REFERENCES",
+      "geometry": {
+        "x": 379.39239501953125,
+        "y": 458.5035509160571,
+        "width": 97.90771484375,
+        "height": 14.755608781442968
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0014",
+      "source_text": "Bartels 등⁵)에 의하면 SSA의 증상은 열, 요통, 마비, 배뇨장애 등\n이나 비특이적인 증상발현으로 초기 진단이 어려운 경우가 많으\n며, 증상 발현기간 또한 1일에서 1년으로 다양한 것으로 나타나\n있다. 20%의 환자에서 만성 증상을 보이는 것으로 나타나 있으며\n본 증례의 환자 또한 만성증상을 나타내었다. Akhaddar 등⁶)에 의\n하면 만성 SSA 환자들일수록 비특이적인 증상을 나타내는 경향\n이 있다고 보고되었다. 백혈구 수 및 적혈구 침강속도, C-반응 단\n백이 상승소견을 보이는 것으로 보고되어 있으나 이것 또한 민감\n도가 높은 검사는 아닌 것으로 알려져 있고 본 증례에서는 백혈\n구 수 및 적혈구 침강속도, C-반응 단백 모두 상승소견을 나타내\n었다.",
+      "translated_text": "According to Bartels et al.⁵), symptoms of SSA include fever, low back pain, paralysis, and\nurinary dysfunction, but early diagnosis is often difficult because symptoms are nonspecific.\nThe duration of symptoms also varies from 1일 to 1년. Chronic symptoms occur in 20% of patients,\nand the present patient also had chronic symptoms. Akhaddar et al.⁶) reported that patients with\nchronic SSA tend to have nonspecific symptoms. Elevated white blood cell count, erythrocyte\nsedimentation rate, and C-반응 protein have been reported, although these tests are not highly\nsensitive. In this case, all three were elevated.",
+      "geometry": {
+        "x": 42.834625244140625,
+        "y": 486.935089787618,
+        "width": 244.40933227539062,
+        "height": 159.7924463161141
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0015",
+      "source_text": "1. Park JS, Kwon H, Cho YB, et al. Lumbar spinal epidural and\n   subdural abscess after acupuncture: a case report. J Korean\n   Orthorp Assoc. 2000;35:181-4.",
+      "translated_text": "1. Park JS, Kwon H, Cho YB, et al. Lumbar spinal epidural and\n   subdural abscess after acupuncture: a case report. J Korean\n   Orthorp Assoc. 2000;35:181-4.",
+      "geometry": {
+        "x": 308.121337890625,
+        "y": 488.3746613760514,
+        "width": 237.93014526367188,
+        "height": 37.0689684021616
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0016",
+      "source_text": "2. Velissaris D, Aretha D, Fligou F, Filos KS. Spinal subdural\n   staphylococcus aureus abscess: case report and review of the\n   literature. World J Emerg Surg. 2009;4:31.",
+      "translated_text": "2. Velissaris D, Aretha D, Fligou F, Filos KS. Spinal subdural\n   staphylococcus aureus abscess: case report and review of the\n   literature. World J Emerg Surg. 2009;4:31.",
+      "geometry": {
+        "x": 308.121337890625,
+        "y": 532.6414877203803,
+        "width": 238.65005493164062,
+        "height": 37.788754196378335
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0017",
+      "source_text": "조영증강 자기공명영상 검사가 진단에 있어서 가장 정확한 도\n구이며 T2에서 고 신호 강도를, T1에서 저 신호 강도를 나타내며\n조영증강에서 변연부 고 신호 강도 소견을 보인다.⁷)\n감별진단으로는 척추 경막하 수질의 종양과 감별이 필요하며\n이 경우 확산 증강 자기공명영상 검사상 고 신호 강도를 보이면\n종양보다는 SSA를 의심할 수 있다.",
+      "translated_text": "Contrast-enhanced magnetic resonance imaging is the most accurate diagnostic tool, showing\nhigh signal intensity on T2, low signal intensity on T1, and peripheral high signal intensity after\ncontrast enhancement.⁷)\nThe differential diagnosis includes intradural spinal tumors. In such cases, high signal intensity\non diffusion-weighted magnetic resonance imaging suggests SSA rather than a tumor.",
+      "geometry": {
+        "x": 42.47467041015625,
+        "y": 652.1259295603576,
+        "width": 265.64666748046875,
+        "height": 96.09140352793348
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0018",
+      "source_text": "3. Vural M, Arslantaş A, Adapinar B, et al. Spinal subdural\n   staphylococcus aureus abscess: case report and review of the\n   literature. Acta Neurol Scand. 2005;112:343-6.",
+      "translated_text": "3. Vural M, Arslantaş A, Adapinar B, et al. Spinal subdural\n   staphylococcus aureus abscess: case report and review of the\n   literature. Acta Neurol Scand. 2005;112:343-6.",
+      "geometry": {
+        "x": 308.121337890625,
+        "y": 577.6280998589259,
+        "width": 238.29010009765625,
+        "height": 37.42886129926997
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0019",
+      "source_text": "4. Kraeutler MJ, Bozzay JD, Walker MP, John K. Spinal subdu-\n   ral abscess following epidural steroid injection. J Neurosurg\n   Spine. 2015;22:90-3.",
+      "translated_text": "4. Kraeutler MJ, Bozzay JD, Walker MP, John K. Spinal subdu-\n   ral abscess following epidural steroid injection. J Neurosurg\n   Spine. 2015;22:90-3.",
+      "geometry": {
+        "x": 308.121337890625,
+        "y": 621.8949262032548,
+        "width": 239.010009765625,
+        "height": 38.1486470934867
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0020",
+      "source_text": "5. Bartels RH, de Jong TR, Grotenhuis JA. Spinal subdural ab-\n   scess. Case report. J Neurosurg. 1992;76:307-11.",
+      "translated_text": "5. Bartels RH, de Jong TR, Grotenhuis JA. Spinal subdural ab-\n   scess. Case report. J Neurosurg. 1992;76:307-11.",
+      "geometry": {
+        "x": 308.121337890625,
+        "y": 666.5216454446921,
+        "width": 237.93014526367188,
+        "height": 28.071645974452476
+      },
+      "status": "validated"
+    },
+    {
+      "region_id": "p0001-r0021",
+      "source_text": "6. Akhaddar A, Boulahroud O, Boucetta M. Chronic spinal\n   cord abscess in an elderly patient. Surg Infect (Larchmt).\n   2011;12:333-4.",
+      "translated_text": "6. Akhaddar A, Boulahroud O, Boucetta M. Chronic spinal\n   cord abscess in an elderly patient. Surg Infect (Larchmt).\n   2011;12:333-4.",
+      "geometry": {
+        "x": 308.121337890625,
+        "y": 697.4724345960116,
+        "width": 237.21023559570312,
+        "height": 39.94811157902853
+      },
+      "status": "validated"
+    }
+  ]
+}
