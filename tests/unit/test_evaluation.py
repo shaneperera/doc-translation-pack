@@ -5,6 +5,7 @@ from pathlib import Path
 import pytest
 
 from doc_translation.adapters.docx import render_text_docx
+from doc_translation.adapters.docx_validation import inspect_docx
 from doc_translation.domain.critical_validation import CriticalToken
 from doc_translation.domain.document import DocumentIR, PageGeometry, PageIR
 from doc_translation.domain.region import BoundingBox, RegionIR
@@ -14,7 +15,6 @@ from doc_translation.evaluation import (
     content_retention,
     critical_token_precision,
     critical_token_recall,
-    editability_metrics,
     libreoffice_roundtrip_status,
     median_anchor_iou,
     translation_anchor_accuracy,
@@ -142,10 +142,9 @@ def test_editability_metrics_reports_text_and_raster_counts(tmp_path: Path) -> N
     output = tmp_path / "output.docx"
     render_text_docx(document, {region.region_id: "Translated"}, output)
 
-    assert editability_metrics(output).model_dump() == {
-        "editable_text_count": 1,
-        "page_sized_raster_count": 0,
-    }
+    inspection = inspect_docx(output)
+    assert inspection.editable_text_count == 1
+    assert inspection.page_sized_raster_count == 0
 
 
 def test_libreoffice_roundtrip_is_unavailable_without_libreoffice(

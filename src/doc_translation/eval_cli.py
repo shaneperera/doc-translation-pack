@@ -6,12 +6,12 @@ import argparse
 from collections.abc import Sequence
 from pathlib import Path
 
+from doc_translation.adapters.docx_validation import inspect_docx
 from doc_translation.evaluation import (
     ReviewedAnchors,
     content_retention,
     critical_token_precision,
     critical_token_recall,
-    editability_metrics,
     libreoffice_roundtrip_status,
     median_anchor_iou,
     translation_anchor_accuracy,
@@ -46,7 +46,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         anchor_accuracy = translation_anchor_accuracy(path, anchors)
         token_precision = critical_token_precision(path, anchors.critical_tokens)
         token_recall = critical_token_recall(path, anchors.critical_tokens)
-        editability = editability_metrics(path)
+        editability = inspect_docx(path)
         audit_path = path.with_suffix(".audit.json")
         iou = median_anchor_iou(audit_path, anchors) if audit_path.exists() else None
         roundtrip = libreoffice_roundtrip_status(path)

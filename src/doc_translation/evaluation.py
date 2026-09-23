@@ -24,25 +24,6 @@ WORD = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
 NUMERIC_TOKEN = re.compile(r"(?<!\w)[<>≤≥]?\d+(?:[.,]\d+)?(?:[/-]\d+)*(?!\w)")
 
 
-class EditabilityMetrics(BaseModel):
-    """Static DOCX facts used to report editability."""
-
-    model_config = ConfigDict(extra="forbid")
-
-    editable_text_count: int = Field(ge=0)
-    page_sized_raster_count: int = Field(ge=0)
-
-
-def editability_metrics(path: Path) -> EditabilityMetrics:
-    """Return editable text and full-page raster counts from DOCX XML."""
-
-    inspection = inspect_docx(path)
-    return EditabilityMetrics(
-        editable_text_count=inspection.editable_text_count,
-        page_sized_raster_count=inspection.page_sized_raster_count,
-    )
-
-
 def libreoffice_roundtrip_status(path: Path) -> str:
     """Return passed, failed, or unavailable for an optional office round-trip."""
 
@@ -109,15 +90,9 @@ def median_anchor_iou(audit_path: Path, anchors: ReviewedAnchors) -> float | Non
 def content_retention(path: Path, anchors: ReviewedAnchors) -> float:
     """Return the fraction of anchored regions represented by nonempty editable text."""
 
-    with ZipFile(path) as package:
-        root = ElementTree.fromstring(package.read("word/document.xml"))
-    text_present = any((node.text or "").strip() for node in root.findall(f".//{WORD}t"))
-    bookmark_names = {
-        node.get(f"{WORD}name")
-        for node in root.findall(f".//{WORD}bookmarkStart")
-    }
+    text_by_bookmark = _bookmarked_text(path)
     represented = sum(
-        text_present and region.region_id.replace("-", "_") in bookmark_names
+        bool(text_by_bookmark.get(region.region_id.replace("-", "_"), "").strip())
         for region in anchors.regions
     )
     return represented / len(anchors.regions)
