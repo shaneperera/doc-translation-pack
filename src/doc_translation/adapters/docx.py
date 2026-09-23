@@ -10,6 +10,7 @@ from docx.enum.section import WD_ORIENT, WD_SECTION
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Inches
+from lxml import etree  # type: ignore[import-untyped]
 
 from doc_translation.domain.document import DocumentIR, PageIR
 
@@ -44,6 +45,52 @@ def _text_for_region(region: object, translated_text: Mapping[str, str]) -> str:
     return translated_text.get(region_id, region.source_text or "")  # type: ignore[attr-defined]
 
 
+WPS_NS = "http://schemas.microsoft.com/office/word/2010/wordprocessingShape"
+
+
+def _wps_element(name: str) -> etree._Element:
+    return etree.Element(f"{{{WPS_NS}}}{name}")
+
+
+def _add_rotated_text(
+    paragraph: object,
+    text: str,
+    rotation: float,
+    width_points: float,
+    height_points: float,
+) -> None:
+    inline = OxmlElement("wp:inline")
+    extent = OxmlElement("wp:extent")
+    extent.set("cx", str(round(width_points * 12_700)))
+    extent.set("cy", str(round(height_points * 12_700)))
+    inline.append(extent)
+
+    graphic = OxmlElement("a:graphic")
+    graphic_data = OxmlElement("a:graphicData")
+    graphic_data.set("uri", "http://schemas.microsoft.com/office/word/2010/wordprocessingGroup")
+    shape = _wps_element("wsp")
+    shape_properties = _wps_element("spPr")
+    transform = OxmlElement("a:xfrm")
+    transform.set("rot", str(round(rotation * 60_000)))
+    shape_properties.append(transform)
+    shape.append(shape_properties)
+    text_box = _wps_element("txbx")
+    text_content = OxmlElement("w:txbxContent")
+    text_paragraph = OxmlElement("w:p")
+    text_run = OxmlElement("w:r")
+    text_node = OxmlElement("w:t")
+    text_node.text = text
+    text_run.append(text_node)
+    text_paragraph.append(text_run)
+    text_content.append(text_paragraph)
+    text_box.append(text_content)
+    shape.append(text_box)
+    graphic_data.append(shape)
+    graphic.append(graphic_data)
+    inline.append(graphic)
+    paragraph.add_run()._r.append(inline)  # type: ignore[attr-defined]
+
+
 def render_text_docx(
     document_ir: DocumentIR,
     translated_text: Mapping[str, str],
@@ -67,7 +114,18 @@ def render_text_docx(
             if region_id in rendered_region_ids:
                 continue
             if region.kind == "text":
-                paragraph = document.add_paragraph(_text_for_region(region, translated_text))
+                text = _text_for_region(region, translated_text)
+                if region.rotation == 0:
+                    paragraph = document.add_paragraph(text)
+                else:
+                    paragraph = document.add_paragraph()
+                    _add_rotated_text(
+                        paragraph,
+                        text,
+                        region.rotation,
+                        region.box.width,
+                        region.box.height,
+                    )
                 _add_bookmark(paragraph._p, region_id, bookmark_id)
                 bookmark_id += 1
             elif region.kind == "checkbox":

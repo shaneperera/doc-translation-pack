@@ -135,3 +135,32 @@ def test_renders_table_cells_checkbox_and_region_bookmarks(tmp_path: Path) -> No
         assert 'w:name="p0001_r0001"' in xml_text
         assert 'w:name="p0001_r0002"' in xml_text
         assert 'w:name="p0001_r0004"' in xml_text
+
+
+def test_renders_rotated_text_as_editable_drawingml(tmp_path: Path) -> None:
+    region = RegionIR(
+        region_id="p0001-r0001",
+        kind="text",
+        box=BoundingBox(x=0, y=0, width=100, height=30),
+        source_text="Header",
+        rotation=47.5,
+    )
+    document = DocumentIR(
+        source_sha256="abc123",
+        pages=[
+            PageIR(
+                page_number=1,
+                geometry=PageGeometry(width_points=100, height_points=100),
+                regions=[region],
+                reading_order=[region.region_id],
+            )
+        ],
+    )
+
+    output = tmp_path / "rotated.docx"
+    render_text_docx(document, {region.region_id: "Translated"}, output)
+
+    with ZipFile(output) as package:
+        xml_text = package.read("word/document.xml").decode()
+        assert "Translated" in xml_text
+        assert 'rot="2850000"' in xml_text

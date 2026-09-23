@@ -36,7 +36,7 @@ class RegionIR(BaseModel):
     region_id: str = Field(pattern=r"^p\d{4}-r\d{4}$")
     kind: RegionKind
     box: BoundingBox
-    rotation: Literal[0, 90, 180, 270] = 0
+    rotation: float = Field(ge=0, lt=360, default=0)
     source_text: str | None = None
     translation_eligible: bool = True
     immutable_tokens: list[str] = Field(default_factory=list)
