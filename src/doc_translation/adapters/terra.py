@@ -2,9 +2,12 @@
 
 from __future__ import annotations
 
+import base64
 import hashlib
 import time
+from collections.abc import Sequence
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any, Generic, TypeVar
 
 from openai import OpenAI
@@ -28,6 +31,7 @@ def call_terra(
     prompt: str,
     response_model: type[T],
     client: Any = None,
+    image_paths: Sequence[Path] = (),
 ) -> TerraResult[T]:
     """Call Terra with a Pydantic response model and reject empty parsed output."""
 
@@ -36,9 +40,23 @@ def call_terra(
 
     input_sha256 = hashlib.sha256(prompt.encode("utf-8")).hexdigest()
     started = time.perf_counter()
+    if image_paths:
+        content: list[dict[str, str]] = [{"type": "input_text", "text": prompt}]
+        for image_path in image_paths:
+            encoded = base64.b64encode(image_path.read_bytes()).decode("ascii")
+            content.append(
+                {
+                    "type": "input_image",
+                    "image_url": f"data:image/png;base64,{encoded}",
+                }
+            )
+        request_input: Any = [{"role": "user", "content": content}]
+    else:
+        request_input = [{"role": "user", "content": prompt}]
+
     response = client.responses.parse(
         model=TERRA_MODEL,
-        input=[{"role": "user", "content": prompt}],
+        input=request_input,
         reasoning={"effort": "medium"},
         store=False,
         text_format=response_model,
