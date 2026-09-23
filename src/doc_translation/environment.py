@@ -6,6 +6,9 @@ import os
 import shutil
 import sys
 from dataclasses import dataclass
+from pathlib import Path
+
+MACOS_LIBREOFFICE = Path("/Applications/LibreOffice.app/Contents/MacOS/soffice")
 
 
 @dataclass(frozen=True)
@@ -22,6 +25,8 @@ def inspect_environment() -> tuple[EnvironmentCheck, ...]:
 
     python_version = f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
     libreoffice_path = shutil.which("libreoffice") or shutil.which("soffice")
+    if libreoffice_path is None and MACOS_LIBREOFFICE.is_file():
+        libreoffice_path = str(MACOS_LIBREOFFICE)
     has_api_key = bool(os.environ.get("OPENAI_API_KEY", "").strip())
 
     return (

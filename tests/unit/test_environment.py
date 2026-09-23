@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import shutil
+from pathlib import Path
 
 import pytest
 
@@ -12,6 +13,9 @@ def test_environment_checks_report_missing_external_requirements(
 ) -> None:
     monkeypatch.delenv("OPENAI_API_KEY", raising=False)
     monkeypatch.setattr(shutil, "which", lambda _: None)
+    monkeypatch.setattr(
+        "doc_translation.environment.MACOS_LIBREOFFICE", Path("/missing/soffice")
+    )
 
     checks = inspect_environment()
     checks_by_name = {check.name: check for check in checks}
