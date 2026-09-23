@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import shutil
+import subprocess
 from dataclasses import dataclass
 from pathlib import Path
 from xml.etree import ElementTree
@@ -46,3 +47,28 @@ def find_libreoffice() -> str | None:
     """Return the available LibreOffice executable, if installed."""
 
     return shutil.which("libreoffice") or shutil.which("soffice")
+
+
+def roundtrip_docx(path: Path, output_dir: Path) -> tuple[Path, Path]:
+    """Render a DOCX to PDF and reopen it through LibreOffice as DOCX."""
+
+    executable = find_libreoffice()
+    if executable is None:
+        raise RuntimeError("LibreOffice is required for DOCX round-trip validation")
+    output_dir.mkdir(parents=True, exist_ok=True)
+    for target in ("pdf", "docx"):
+        subprocess.run(
+            [
+                executable,
+                "--headless",
+                "--convert-to",
+                target,
+                "--outdir",
+                str(output_dir),
+                str(path),
+            ],
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+    return output_dir / f"{path.stem}.pdf", output_dir / path.name
