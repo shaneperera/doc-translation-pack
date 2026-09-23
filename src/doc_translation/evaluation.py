@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from pathlib import Path
 from xml.etree import ElementTree
 from zipfile import ZipFile
@@ -11,6 +12,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from doc_translation.domain.critical_validation import CriticalToken
 
 WORD = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
+NUMERIC_TOKEN = re.compile(r"(?<!\w)[<>≤≥]?\d+(?:[.,]\d+)?(?:[/-]\d+)*(?!\w)")
 
 
 class ReviewedRegion(BaseModel):
@@ -92,3 +94,22 @@ def critical_token_recall(path: Path, tokens: list[CriticalToken]) -> float:
             continue
         matched += 1
     return matched / len(tokens)
+
+
+def critical_token_precision(path: Path, tokens: list[CriticalToken]) -> float:
+    """Return the fraction of numeric-like output tokens in the reviewed inventory."""
+
+    text_by_bookmark = _bookmarked_text(path)
+    observed = {
+        (name, value)
+        for name, text in text_by_bookmark.items()
+        for value in NUMERIC_TOKEN.findall(text)
+    }
+    expected = {
+        (token.region_id.replace("-", "_"), token.value)
+        for token in tokens
+        if token.kind in {"number", "date"}
+    }
+    if not observed:
+        return 1.0 if not expected else 0.0
+    return len(observed & expected) / len(observed)
