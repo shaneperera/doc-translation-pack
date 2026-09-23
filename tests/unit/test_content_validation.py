@@ -55,6 +55,15 @@ def test_token_drift_is_a_failed_diagnostic() -> None:
     assert result.diagnostics[0].expected == "1234"
 
 
+def test_full_width_token_variant_is_preserved_semantically() -> None:
+    region = _region()
+    region.immutable_tokens = ["２"]
+
+    result = validate_content([region], {region.region_id: "Value 2"})
+
+    assert result.passed
+
+
 def test_non_translatable_unicode_text_must_remain_exact() -> None:
     region = _region(
         source_text="Ångström ✓",

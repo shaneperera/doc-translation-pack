@@ -11,8 +11,11 @@ from doc_translation.eval_cli import main
 
 
 def test_evaluate_docs_prints_metric_definitions_and_values(
-    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
 ) -> None:
+    monkeypatch.setattr("doc_translation.evaluation.find_libreoffice", lambda: None)
     region = RegionIR(
         region_id="p0001-r0001",
         kind="text",

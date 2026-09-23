@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import unicodedata
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict
@@ -92,7 +93,9 @@ def validate_content(
         region = source_by_id[region_id]
         observed = translated_text[region_id]
         for token in region.immutable_tokens:
-            if token not in observed:
+            if unicodedata.normalize("NFKC", token) not in unicodedata.normalize(
+                "NFKC", observed
+            ):
                 diagnostics.append(
                     Diagnostic(
                         code="immutable_token_drift",

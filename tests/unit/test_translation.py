@@ -7,6 +7,7 @@ from unittest.mock import Mock
 import pytest
 
 from doc_translation.adapters.translation import (
+    TranslationItem,
     TranslationResponse,
     TranslationValidationError,
     translate_regions,
@@ -36,9 +37,29 @@ def test_recorded_translation_fixture_is_valid() -> None:
     }
 
 
+def test_response_schema_uses_a_list_for_structured_output() -> None:
+    schema = TranslationResponse.model_json_schema()
+
+    assert schema["properties"]["translations"]["type"] == "array"
+
+
+def test_validation_accepts_unicode_width_variant_of_immutable_token() -> None:
+    region = _regions()[0].model_copy(update={"immutable_tokens": ["２"]})
+
+    assert validate_translation(
+        TranslationResponse(
+            translations=[TranslationItem(region_id=region.region_id, text="2")]
+        ),
+        [region],
+    ) == {region.region_id: "2"}
+
+
 def test_validation_rejects_missing_extra_empty_and_drifted_values() -> None:
     response = TranslationResponse(
-        translations={"p0001-r0002": "Other", "p0001-r0001": ""}
+        translations=[
+            TranslationItem(region_id="p0001-r0002", text="Other"),
+            TranslationItem(region_id="p0001-r0001", text=""),
+        ]
     )
 
     with pytest.raises(TranslationValidationError) as error:
@@ -52,10 +73,12 @@ def test_validation_rejects_missing_extra_empty_and_drifted_values() -> None:
 def test_translate_regions_retries_once_with_issues() -> None:
     client = Mock()
     client.responses.parse.side_effect = [
-        SimpleNamespace(output_parsed=TranslationResponse(translations={})),
+        SimpleNamespace(output_parsed=TranslationResponse(translations=[])),
         SimpleNamespace(
             output_parsed=TranslationResponse(
-                translations={"p0001-r0001": "Patient number 1234"}
+                translations=[
+                    TranslationItem(region_id="p0001-r0001", text="Patient number 1234")
+                ]
             )
         ),
     ]
@@ -71,8 +94,8 @@ def test_translate_regions_retries_once_with_issues() -> None:
 def test_translate_regions_fails_after_one_retry() -> None:
     client = Mock()
     client.responses.parse.side_effect = [
-        SimpleNamespace(output_parsed=TranslationResponse(translations={})),
-        SimpleNamespace(output_parsed=TranslationResponse(translations={})),
+        SimpleNamespace(output_parsed=TranslationResponse(translations=[])),
+        SimpleNamespace(output_parsed=TranslationResponse(translations=[])),
     ]
 
     with pytest.raises(TranslationValidationError):
