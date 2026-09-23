@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+import json
 import re
 from pathlib import Path
+from statistics import median
 from xml.etree import ElementTree
 from zipfile import ZipFile
 
@@ -42,6 +44,7 @@ class ReviewedRegion(BaseModel):
 
     region_id: str
     expected_text: str = Field(min_length=1)
+    box: list[float] | None = Field(default=None, min_length=4, max_length=4)
 
 
 class ReviewedAnchors(BaseModel):
@@ -51,6 +54,33 @@ class ReviewedAnchors(BaseModel):
 
     version: int = Field(ge=1)
     regions: list[ReviewedRegion] = Field(min_length=1)
+
+
+def median_anchor_iou(audit_path: Path, anchors: ReviewedAnchors) -> float | None:
+    """Return median IoU for reviewed boxes against output audit geometry."""
+
+    audit = json.loads(audit_path.read_text())
+    output_boxes = {
+        region["region_id"]: region["geometry"] for region in audit.get("regions", [])
+    }
+    scores: list[float] = []
+    for anchor in anchors.regions:
+        if anchor.box is None or anchor.region_id not in output_boxes:
+            continue
+        expected_x, expected_y, expected_width, expected_height = anchor.box
+        observed = output_boxes[anchor.region_id]
+        observed_x = observed["x"]
+        observed_y = observed["y"]
+        observed_width = observed["width"]
+        observed_height = observed["height"]
+        left = max(expected_x, observed_x)
+        top = max(expected_y, observed_y)
+        right = min(expected_x + expected_width, observed_x + observed_width)
+        bottom = min(expected_y + expected_height, observed_y + observed_height)
+        intersection = max(0.0, right - left) * max(0.0, bottom - top)
+        union = expected_width * expected_height + observed_width * observed_height - intersection
+        scores.append(intersection / union if union else 0.0)
+    return median(scores) if scores else None
 
 
 def content_retention(path: Path, anchors: ReviewedAnchors) -> float:

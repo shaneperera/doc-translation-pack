@@ -13,6 +13,7 @@ from doc_translation.evaluation import (
     critical_token_precision,
     critical_token_recall,
     editability_metrics,
+    median_anchor_iou,
     translation_anchor_accuracy,
 )
 
@@ -185,3 +186,23 @@ def test_translation_anchor_accuracy_compares_reviewed_text(tmp_path: Path) -> N
     )
 
     assert translation_anchor_accuracy(output, anchors) == 0.5
+
+
+def test_median_anchor_iou_compares_reviewed_and_audit_boxes(tmp_path: Path) -> None:
+    audit = tmp_path / "output.audit.json"
+    audit.write_text(
+        '{"regions": [{"region_id": "p0001-r0001", '
+        '"geometry": {"x": 0, "y": 0, "width": 10, "height": 10}}]}'
+    )
+    anchors = ReviewedAnchors(
+        version=1,
+        regions=[
+            ReviewedRegion(
+                region_id="p0001-r0001",
+                expected_text="Hello",
+                box=[0, 0, 10, 10],
+            )
+        ],
+    )
+
+    assert median_anchor_iou(audit, anchors) == 1.0
