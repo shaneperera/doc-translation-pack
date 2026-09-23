@@ -1,43 +1,35 @@
-# Clinical Document Translation Pipeline
+# Clinical Document Translation
 
-This project converts image-only clinical PDFs and images into validated, editable DOCX files while preserving source content and page geometry. Development is incremental; Milestone 1 establishes the reproducible project and environment checks but does not yet translate documents.
+This Python 3.11 CLI turns scanned clinical PDFs into editable Word documents. It extracts and translates page regions, checks protected content, and publishes only after the generated DOCX passes structural and LibreOffice page checks. It is an evaluation prototype, not a clinical translation system.
 
 ## Setup
 
-Install Python 3.11, create a virtual environment, and install the dependencies:
+Install Python 3.11 and LibreOffice. For live extraction and translation, set the OpenAI key in the shell that runs the CLI:
 
-```bash
+```sh
+export OPENAI_API_KEY="your-key"
 python3.11 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
 .venv/bin/python -m pip install -e .
-.venv/bin/translate-doc --help
 .venv/bin/translate-doc --check-system
+.venv/bin/translate-doc --help
 ```
 
-LibreOffice is a system dependency used by later milestones for independent DOCX rendering and text recovery. Install it separately with Homebrew on macOS or the system package manager on Linux. `OPENAI_API_KEY` is required only for live extraction and translation calls; offline tests do not require it.
+## Checks
 
-## Project structure
-
-```text
-data/       immutable supplied document pack
-src/        translation package
-eval/       evaluation harness, references, fixtures, and results
-outputs/    validated deliverables and comparison renders
-app/        Streamlit entry point
-report/     architecture, assumptions, evidence, and final report
-tests/      unit, integration, and synthetic tests
-```
-
-The supplied pack is preserved under `data/`. Paths in `data/manifest.json` are resolved relative to that manifest.
-
-## Development commands
-
-```bash
+```sh
 .venv/bin/python -m pytest
 .venv/bin/python -m ruff check .
 .venv/bin/python -m mypy
 ```
 
-## Safety scope
+## Repository layout
 
-The provided files contain blank public forms and a published article, not patient data. The planned pipeline is an evaluation system, not evidence that handwriting or real patient documents can be translated safely.
+- `src/doc_translation/` contains the CLI, pipeline, domain models, and adapters.
+- `data/` is the immutable supplied document pack.
+- `outputs/` contains generated DOCX deliverables and audit sidecars.
+- `eval/` contains the example reviewed-anchor format and offline evaluation harness.
+- `report/` records architecture, evidence, assumptions, and results.
+- `tests/` contains offline tests.
+
+The supplied pack contains public blank forms and a published article, not patient data. Results on these files do not establish accuracy on patient records or suitability for clinical decisions.

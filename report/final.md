@@ -16,7 +16,7 @@ python3.11 -m venv .venv
 .venv/bin/translate-doc data/documents/JPN_referral.pdf -t en -o outputs/JPN_referral.docx
 ```
 
-The run produced 68 passing tests; Ruff and strict Mypy passed. A LibreOffice stress test kept 40 positioned cells on one source-sized page. Successful translations publish a DOCX and its `.audit.json`. The Japanese run exits at the fit check and publishes neither file.
+The final run produced 69 passing tests; Ruff and strict Mypy passed. A LibreOffice stress test kept 40 positioned cells on one source-sized page. Successful translations publish a DOCX and its `.audit.json`. The Japanese run exits at the fit check and publishes neither file.
 
 The German and Korean output files are already present in the repository, so add `--force` to those two commands when regenerating them here.
 
@@ -30,7 +30,7 @@ The example anchor is a placeholder. Use only `editable_text_count`, `page_sized
 
 ## Architecture and rejected alternatives
 
-The pipeline normalizes each page, extracts editable regions, translates eligible text in batches of 10, then places DrawingML text boxes over one host paragraph per page. It checks immutable tokens and retries missing or oversized translations. Regions can widen into clear space; text shrinks to a 5 pt floor. LibreOffice checks editability, bookmarks, page count, and physical dimensions before the service publishes a file.
+The pipeline normalizes each page, extracts editable regions, translates eligible text in batches of 10, then places DrawingML text boxes over one host paragraph per page. It checks immutable tokens and retries missing or oversized translations. Regions can widen into clear space; text shrinks to a 5 pt floor. An image-mark crop overlapping editable text is omitted to prevent duplicate source lettering; its background may be lost. LibreOffice checks editability, bookmarks, page count, and physical dimensions before publication.
 
 I rejected full-page image backgrounds because they are not editable, normal Word flow because it loses the source coordinates, continuation pages because they break page parity, and text below 5 pt because it becomes too small. The renderer uses the same rules for every document. If a region still does not fit, the run fails rather than clipping text.
 
@@ -41,7 +41,7 @@ I narrowed the five-document pack to the first three for this effort: Japanese, 
 | Document | Pages: source/output | Dimensions *(within 1 pt)* | Editable `w:t` nodes *(Word text nodes)* | Full-page rasters *(must be 0)* | Result |
 |---|---:|---|---:|---:|---|
 | Japanese referral | 1 / N/A | N/A | N/A | N/A | Fit check failed; no output |
-| German child check-up | 2 / 2 | Pass | 70 | 0 | Published; both pages reviewed |
+| German child check-up | 2 / 2 | Pass | 65 | 0 | Published; both pages reviewed |
 | Korean case report | 1 / 1 | Pass | 20 | 0 | Published; page reviewed |
 | Italian adverse-reaction form | 1 / N/A | N/A | N/A | N/A | Not run; cut for time |
 | German maternity record | 1 / N/A | N/A | N/A | N/A | Not run; cut for time |
@@ -54,6 +54,7 @@ The pack had no reviewed labels or translations. I used the scans and manifest t
 
 - Japanese, page 1, region `p0001-r0019`: remained too long at the 5 pt floor after widening and two shorter-translation retries. The publication check stopped the run.
 - German check-up, page 2, region `p0002-r0049`: failed the earlier 7 pt fit check. Widening and the 5 pt floor let a later run pass.
+- German check-up, page 1, instruction banner: the cropped image mark contained `Zutreffendes bitte ankreuzen!` beneath the editable “Please check as applicable!” text. The renderer now skips an image-mark crop when its box overlaps editable text; the banner fill is lost, but the lettering no longer overlaps.
 - Korean report, page 1: an earlier translation changed immutable tokens `제6` and `제3`. A later run passed after smaller batches and token checks with retries.
 
 ## What I would tell the customer

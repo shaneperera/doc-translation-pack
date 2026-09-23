@@ -429,13 +429,25 @@ def render_text_docx(
             elif region.kind == "image_mark":
                 if page_rasters is None or page.page_number not in page_rasters:
                     raise ValueError(f"missing raster for image mark: {region_id}")
-                run = _add_image_mark(
-                    host,
-                    page,
-                    region,
-                    page_rasters[page.page_number],
-                    bookmark_id,
+                box = region.box
+                overlaps_text = any(
+                    other.kind in {"text", "cell"}
+                    and box.x < other.box.x + other.box.width
+                    and other.box.x < box.x + box.width
+                    and box.y < other.box.y + other.box.height
+                    and other.box.y < box.y + box.height
+                    for other in page.regions
                 )
+                if overlaps_text:
+                    run = host.add_run()._r
+                else:
+                    run = _add_image_mark(
+                        host,
+                        page,
+                        region,
+                        page_rasters[page.page_number],
+                        bookmark_id,
+                    )
                 _add_bookmark(run, region_id, bookmark_id)
                 bookmark_id += 1
             elif region.kind == "watermark":

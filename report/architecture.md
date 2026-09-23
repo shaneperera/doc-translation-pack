@@ -1,20 +1,13 @@
 # Architecture
 
-The scaffold reserves three package layers behind a thin CLI:
+The `translate-doc` CLI delegates to one pipeline service. The service normalizes each source page, extracts generic positioned regions, translates eligible text in batches, validates protected content, and renders editable DrawingML text over a one-paragraph-per-page host. Tables group regions; cells, checkboxes, lines, and isolated image marks are rendered separately. An image-mark crop that overlaps editable text is omitted so embedded source lettering is not duplicated; its background or decoration may be lost. Text regions may widen into unused horizontal space and shrink to a 5 pt floor.
 
-- `domain` owns document concepts and validation policy and performs no external I/O.
-- `pipeline` coordinates translation Runs and depends on `domain`.
-- `adapters` integrate file formats, models, rendering tools, and the filesystem through seams required by `pipeline`.
-- The CLI will call `pipeline`; it does not contain translation logic.
-
-Dependencies point toward `domain`. A seam is introduced only when behavior actually varies or must be replaced in an offline test. This keeps the public translation interface small while external-tool complexity stays local to its adapter.
-
-Milestone 1 implements only package scaffolding, environment diagnostics, and command help. The three layers contain no speculative interfaces yet. Extraction, translation, rendering, evaluation, and publication are absent.
+The service writes to a temporary workspace. Before publication, it checks editable text and bookmarks, rejects full-page raster backgrounds, renders with LibreOffice, and verifies output page count and dimensions against the source. A failure leaves the requested output unpublished. The offline evaluation harness checks document structure and only scores reviewed anchors supplied by the evaluator; the checked-in example anchors are placeholders.
 
 ## Repository boundaries
 
 - `data/` is immutable input and source metadata.
 - `outputs/` accepts only validated, atomically published deliverables and comparisons.
-- Work in progress and failed Runs stay in temporary directories.
-- `eval/` operates offline on committed references and outputs.
-- `report/` accumulates the evidence used by the final report.
+- Work in progress and failed runs stay in temporary directories.
+- `eval/` operates offline on supplied references and outputs.
+- `report/` records architecture, assumptions, evidence, and results.

@@ -236,6 +236,43 @@ def test_renders_image_mark_as_cropped_media(tmp_path: Path) -> None:
         assert 'w:name="p0001_r0001"' in package.read("word/document.xml").decode()
 
 
+def test_skips_image_mark_under_overlapping_editable_text(tmp_path: Path) -> None:
+    raster = tmp_path / "page.png"
+    Image.new("RGB", (200, 200), "red").save(raster)
+    image_mark = RegionIR(
+        region_id="p0001-r0001",
+        kind="image_mark",
+        box=BoundingBox(x=25, y=25, width=50, height=50),
+        translation_eligible=False,
+    )
+    text = RegionIR(
+        region_id="p0001-r0002",
+        kind="text",
+        box=BoundingBox(x=30, y=30, width=45, height=15),
+        source_text="Original wording",
+    )
+    document = DocumentIR(
+        source_sha256="abc123",
+        pages=[
+            PageIR(
+                page_number=1,
+                geometry=PageGeometry(width_points=100, height_points=100),
+                regions=[image_mark, text],
+                reading_order=[image_mark.region_id, text.region_id],
+            )
+        ],
+    )
+    output = tmp_path / "overlap.docx"
+
+    render_text_docx(document, {text.region_id: "Translated wording"}, output, {1: raster})
+
+    with ZipFile(output) as package:
+        assert not any(name.startswith("word/media/") for name in package.namelist())
+        xml = package.read("word/document.xml").decode()
+        assert "Translated wording" in xml
+        assert 'w:name="p0001_r0001"' in xml
+
+
 def test_many_positioned_regions_share_one_page_host(tmp_path: Path) -> None:
     regions = [
         RegionIR(
