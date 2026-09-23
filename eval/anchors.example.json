@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "regions": [
+    {
+      "region_id": "p0001-r0001",
+      "expected_text": "Example reviewed anchor"
+    }
+  ]
+}
