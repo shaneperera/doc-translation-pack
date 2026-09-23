@@ -51,6 +51,7 @@ def test_renders_editable_text_and_source_page_sizes(tmp_path: Path) -> None:
         text_nodes = document_xml.findall(f".//{WORD_NS}t")
         page_sizes = document_xml.findall(f".//{WORD_NS}pgSz")
         assert [node.text for node in text_nodes] == ["Translated ✓"]
+        assert 'cx="1270000"' in etree.tostring(document_xml).decode()
         assert [(node.get(f"{WORD_NS}w"), node.get(f"{WORD_NS}h")) for node in page_sizes] == [
             ("6000", "10000"),
             ("12000", "8000"),

@@ -56,7 +56,7 @@ def _wps_element(name: str) -> etree._Element:
     return etree.Element(f"{{{WPS_NS}}}{name}")
 
 
-def _add_rotated_text(
+def _add_text_box(
     paragraph: object,
     text: str,
     rotation: float,
@@ -142,17 +142,14 @@ def render_text_docx(
                 continue
             if region.kind == "text":
                 text = _text_for_region(region, translated_text)
-                if region.rotation == 0:
-                    paragraph = document.add_paragraph(text)
-                else:
-                    paragraph = document.add_paragraph()
-                    _add_rotated_text(
-                        paragraph,
-                        text,
-                        region.rotation,
-                        region.box.width,
-                        region.box.height,
-                    )
+                paragraph = document.add_paragraph()
+                _add_text_box(
+                    paragraph,
+                    text,
+                    region.rotation,
+                    region.box.width,
+                    region.box.height,
+                )
                 _add_bookmark(paragraph._p, region_id, bookmark_id)
                 bookmark_id += 1
             elif region.kind == "checkbox":
