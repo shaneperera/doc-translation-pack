@@ -13,6 +13,7 @@ from doc_translation.evaluation import (
     critical_token_precision,
     critical_token_recall,
     editability_metrics,
+    translation_anchor_accuracy,
 )
 
 
@@ -141,3 +142,46 @@ def test_editability_metrics_reports_text_and_raster_counts(tmp_path: Path) -> N
         "editable_text_count": 1,
         "page_sized_raster_count": 0,
     }
+
+
+def test_translation_anchor_accuracy_compares_reviewed_text(tmp_path: Path) -> None:
+    regions = [
+        RegionIR(
+            region_id="p0001-r0001",
+            kind="text",
+            box=BoundingBox(x=0, y=0, width=100, height=20),
+            source_text="Hallo",
+        ),
+        RegionIR(
+            region_id="p0001-r0002",
+            kind="text",
+            box=BoundingBox(x=0, y=20, width=100, height=20),
+            source_text="Welt",
+        ),
+    ]
+    document = DocumentIR(
+        source_sha256="abc123",
+        pages=[
+            PageIR(
+                page_number=1,
+                geometry=PageGeometry(width_points=100, height_points=100),
+                regions=regions,
+                reading_order=[region.region_id for region in regions],
+            )
+        ],
+    )
+    output = tmp_path / "output.docx"
+    render_text_docx(
+        document,
+        {"p0001-r0001": "Hello", "p0001-r0002": "World"},
+        output,
+    )
+    anchors = ReviewedAnchors(
+        version=1,
+        regions=[
+            ReviewedRegion(region_id="p0001-r0001", expected_text="Hello"),
+            ReviewedRegion(region_id="p0001-r0002", expected_text="Earth"),
+        ],
+    )
+
+    assert translation_anchor_accuracy(output, anchors) == 0.5

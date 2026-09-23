@@ -70,6 +70,18 @@ def content_retention(path: Path, anchors: ReviewedAnchors) -> float:
     return represented / len(anchors.regions)
 
 
+def translation_anchor_accuracy(path: Path, anchors: ReviewedAnchors) -> float:
+    """Return the fraction of reviewed anchors matching their editable output text."""
+
+    text_by_bookmark = _bookmarked_text(path)
+    matched = 0
+    for region in anchors.regions:
+        actual = text_by_bookmark.get(region.region_id.replace("-", "_"), "").strip()
+        if actual == region.expected_text.strip():
+            matched += 1
+    return matched / len(anchors.regions)
+
+
 def _bookmarked_text(path: Path) -> dict[str, str]:
     with ZipFile(path) as package:
         root = ElementTree.fromstring(package.read("word/document.xml"))
