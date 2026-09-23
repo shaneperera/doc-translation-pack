@@ -42,6 +42,7 @@ class RegionIR(BaseModel):
     immutable_tokens: list[str] = Field(default_factory=list)
     unreadable: bool = False
     parent_region_id: str | None = None
+    checked: bool = False
 
 
 def make_region_id(page_number: int, reading_order_position: int) -> str:

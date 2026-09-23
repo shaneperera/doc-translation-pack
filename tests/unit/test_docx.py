@@ -78,3 +78,60 @@ def test_rejects_missing_translation_and_unsupported_region(tmp_path: Path) -> N
 
     with pytest.raises(ValueError, match="missing translated text"):
         render_text_docx(document, {}, tmp_path / "missing.docx")
+
+
+def test_renders_table_cells_checkbox_and_region_bookmarks(tmp_path: Path) -> None:
+    table = RegionIR(
+        region_id="p0001-r0001",
+        kind="table",
+        box=BoundingBox(x=0, y=0, width=100, height=50),
+        translation_eligible=False,
+    )
+    first_cell = RegionIR(
+        region_id="p0001-r0002",
+        kind="cell",
+        box=BoundingBox(x=0, y=0, width=50, height=25),
+        parent_region_id=table.region_id,
+    )
+    second_cell = RegionIR(
+        region_id="p0001-r0003",
+        kind="cell",
+        box=BoundingBox(x=50, y=0, width=50, height=25),
+        source_text="",
+        parent_region_id=table.region_id,
+    )
+    checkbox = RegionIR(
+        region_id="p0001-r0004",
+        kind="checkbox",
+        box=BoundingBox(x=0, y=60, width=10, height=10),
+        translation_eligible=False,
+        checked=True,
+    )
+    document = DocumentIR(
+        source_sha256="abc123",
+        pages=[
+            PageIR(
+                page_number=1,
+                geometry=PageGeometry(width_points=100, height_points=100),
+                regions=[table, first_cell, second_cell, checkbox],
+                reading_order=[
+                    table.region_id,
+                    first_cell.region_id,
+                    second_cell.region_id,
+                    checkbox.region_id,
+                ],
+            )
+        ],
+    )
+    output = tmp_path / "controls.docx"
+
+    render_text_docx(document, {first_cell.region_id: "Name", second_cell.region_id: ""}, output)
+
+    with ZipFile(output) as package:
+        document_xml = etree.fromstring(package.read("word/document.xml"))
+        xml_text = package.read("word/document.xml").decode()
+        assert document_xml.find(f".//{WORD_NS}tbl") is not None
+        assert "☑" in xml_text
+        assert 'w:name="p0001_r0001"' in xml_text
+        assert 'w:name="p0001_r0002"' in xml_text
+        assert 'w:name="p0001_r0004"' in xml_text
