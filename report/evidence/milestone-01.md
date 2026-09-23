@@ -8,19 +8,9 @@ Recorded on 2026-09-23 on macOS arm64.
 - uv 0.12.17
 - Dependency resolution: 66 packages in `uv.lock`
 
-## Verification
+## Findings
 
-| Command | Result |
-|---|---|
-| `uv sync --all-extras --dev --locked` | Passed; installed the project and 62 packages. |
-| `uv build` | Passed; built the source distribution and wheel. |
-| `uv run pytest` | Passed; 2 tests. |
-| `uv run ruff check .` | Passed. |
-| `uv run mypy` | Passed. |
-| `uv run translate-doc --help` | Passed. |
-| `translate-doc --check-system` | Python 3.11 and API-key presence passed; LibreOffice was not found on `PATH`. |
-
-LibreOffice absence does not block offline Milestone 1 tests. It must be resolved before LibreOffice round-trip validation can pass in Milestone 10.
+The scaffold is pinned to Python 3.11 with uv 0.12.17. LibreOffice is not installed on the development machine, so independent DOCX round-trip validation remains a later environment requirement rather than a Milestone 1 capability.
 
 ## Supplied pack integrity
 
