@@ -12,6 +12,7 @@ from doc_translation.evaluation import (
     content_retention,
     critical_token_precision,
     critical_token_recall,
+    editability_metrics,
 )
 
 
@@ -113,3 +114,30 @@ def test_critical_token_precision_detects_an_unreviewed_number(tmp_path: Path) -
     ]
 
     assert critical_token_precision(output, tokens) == 0.5
+
+
+def test_editability_metrics_reports_text_and_raster_counts(tmp_path: Path) -> None:
+    region = RegionIR(
+        region_id="p0001-r0001",
+        kind="text",
+        box=BoundingBox(x=0, y=0, width=100, height=20),
+        source_text="Source",
+    )
+    document = DocumentIR(
+        source_sha256="abc123",
+        pages=[
+            PageIR(
+                page_number=1,
+                geometry=PageGeometry(width_points=100, height_points=100),
+                regions=[region],
+                reading_order=[region.region_id],
+            )
+        ],
+    )
+    output = tmp_path / "output.docx"
+    render_text_docx(document, {region.region_id: "Translated"}, output)
+
+    assert editability_metrics(output).model_dump() == {
+        "editable_text_count": 1,
+        "page_sized_raster_count": 0,
+    }

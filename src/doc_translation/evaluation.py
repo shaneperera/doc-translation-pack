@@ -9,10 +9,30 @@ from zipfile import ZipFile
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from doc_translation.adapters.docx_validation import inspect_docx
 from doc_translation.domain.critical_validation import CriticalToken
 
 WORD = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
 NUMERIC_TOKEN = re.compile(r"(?<!\w)[<>≤≥]?\d+(?:[.,]\d+)?(?:[/-]\d+)*(?!\w)")
+
+
+class EditabilityMetrics(BaseModel):
+    """Static DOCX facts used to report editability."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    editable_text_count: int = Field(ge=0)
+    page_sized_raster_count: int = Field(ge=0)
+
+
+def editability_metrics(path: Path) -> EditabilityMetrics:
+    """Return editable text and full-page raster counts from DOCX XML."""
+
+    inspection = inspect_docx(path)
+    return EditabilityMetrics(
+        editable_text_count=inspection.editable_text_count,
+        page_sized_raster_count=inspection.page_sized_raster_count,
+    )
 
 
 class ReviewedRegion(BaseModel):
