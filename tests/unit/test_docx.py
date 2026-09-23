@@ -169,7 +169,7 @@ def test_renders_rotated_text_as_editable_drawingml(tmp_path: Path) -> None:
         assert 'rot="2850000"' in xml_text
 
 
-def test_long_text_fails_closed_until_continuation_exists(tmp_path: Path) -> None:
+def test_long_text_fails_below_seven_point_floor(tmp_path: Path) -> None:
     region = RegionIR(
         region_id="p0001-r0001",
         kind="text",
@@ -187,7 +187,7 @@ def test_long_text_fails_closed_until_continuation_exists(tmp_path: Path) -> Non
         ],
     )
 
-    with pytest.raises(ValueError, match="requires continuation page"):
+    with pytest.raises(ValueError, match="does not fit at 7 pt"):
         render_text_docx(
             document,
             {region.region_id: "A very long translated label"},

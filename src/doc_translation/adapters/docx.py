@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 from io import BytesIO
-from math import ceil
 from pathlib import Path
 
 from docx import Document
@@ -56,16 +55,11 @@ def _text_for_region(region: object, translated_text: Mapping[str, str]) -> str:
 def _fit_font_size(text: str, width_points: float, height_points: float) -> int:
     for font_size in range(DEFAULT_FONT_SIZE, MIN_FONT_SIZE - 1, -1):
         characters_per_line = max(1, int(width_points / (font_size * 0.5)))
-        line_count = ceil(len(text) / characters_per_line)
-        if line_count * font_size * 1.2 <= height_points:
+        lines = text.splitlines() or [""]
+        longest_line = max(len(line) for line in lines)
+        if longest_line <= characters_per_line and len(lines) * font_size * 1.2 <= height_points:
             return font_size
     return MIN_FONT_SIZE
-
-
-def _text_fits(text: str, width_points: float, height_points: float, font_size: int) -> bool:
-    characters_per_line = max(1, int(width_points / (font_size * 0.5)))
-    line_count = ceil(len(text) / characters_per_line)
-    return line_count * font_size * 1.2 <= height_points
 
 
 WPS_NS = "http://schemas.microsoft.com/office/word/2010/wordprocessingShape"
@@ -168,8 +162,13 @@ def render_text_docx(
             if region.kind == "text":
                 text = _text_for_region(region, translated_text)
                 font_size = _fit_font_size(text, region.box.width, region.box.height)
-                if not _text_fits(text, region.box.width, region.box.height, font_size):
-                    raise ValueError(f"text requires continuation page: {region_id}")
+                if font_size == MIN_FONT_SIZE:
+                    lines = text.splitlines() or [""]
+                    characters_per_line = max(1, int(region.box.width / (MIN_FONT_SIZE * 0.5)))
+                    too_wide = max(len(line) for line in lines) > characters_per_line
+                    too_tall = len(lines) * MIN_FONT_SIZE * 1.2 > region.box.height
+                    if too_wide or too_tall:
+                        raise ValueError(f"text does not fit at 7 pt: {region_id}")
                 paragraph = document.add_paragraph()
                 _add_text_box(
                     paragraph,
