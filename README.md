@@ -4,12 +4,14 @@ This project converts image-only clinical PDFs and images into validated, editab
 
 ## Setup
 
-Install Python 3.11 and [uv](https://docs.astral.sh/uv/), then run:
+Install Python 3.11, create a virtual environment, and install the dependencies:
 
 ```bash
-uv sync --all-extras --dev
-uv run translate-doc --help
-uv run translate-doc --check-system
+python3.11 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m pip install -e .
+.venv/bin/translate-doc --help
+.venv/bin/translate-doc --check-system
 ```
 
 LibreOffice is a system dependency used by later milestones for independent DOCX rendering and text recovery. Install it separately with Homebrew on macOS or the system package manager on Linux. `OPENAI_API_KEY` is required only for live extraction and translation calls; offline tests do not require it.
@@ -31,9 +33,9 @@ The supplied pack is preserved under `data/`. Paths in `data/manifest.json` are 
 ## Development commands
 
 ```bash
-uv run pytest
-uv run ruff check .
-uv run mypy
+.venv/bin/python -m pytest
+.venv/bin/python -m ruff check .
+.venv/bin/python -m mypy
 ```
 
 ## Safety scope
