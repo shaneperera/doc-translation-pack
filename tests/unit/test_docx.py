@@ -5,6 +5,7 @@ from zipfile import ZipFile
 
 import pytest
 from lxml import etree  # type: ignore[import-untyped]
+from PIL import Image
 
 from doc_translation.adapters.docx import render_text_docx
 from doc_translation.domain.document import DocumentIR, PageGeometry, PageIR
@@ -164,3 +165,32 @@ def test_renders_rotated_text_as_editable_drawingml(tmp_path: Path) -> None:
         xml_text = package.read("word/document.xml").decode()
         assert "Translated" in xml_text
         assert 'rot="2850000"' in xml_text
+
+
+def test_renders_image_mark_as_cropped_media(tmp_path: Path) -> None:
+    raster = tmp_path / "page.png"
+    Image.new("RGB", (200, 200), "red").save(raster)
+    region = RegionIR(
+        region_id="p0001-r0001",
+        kind="image_mark",
+        box=BoundingBox(x=25, y=25, width=50, height=50),
+        translation_eligible=False,
+    )
+    document = DocumentIR(
+        source_sha256="abc123",
+        pages=[
+            PageIR(
+                page_number=1,
+                geometry=PageGeometry(width_points=100, height_points=100),
+                regions=[region],
+                reading_order=[region.region_id],
+            )
+        ],
+    )
+
+    output = tmp_path / "image-mark.docx"
+    render_text_docx(document, {}, output, {1: raster})
+
+    with ZipFile(output) as package:
+        assert "word/media/image1.png" in package.namelist()
+        assert 'w:name="p0001_r0001"' in package.read("word/document.xml").decode()

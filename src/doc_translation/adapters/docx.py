@@ -3,14 +3,18 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
+from io import BytesIO
 from pathlib import Path
 
 from docx import Document
+from docx.document import Document as DocumentObject
 from docx.enum.section import WD_ORIENT, WD_SECTION
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Inches
+from docx.text.paragraph import Paragraph
 from lxml import etree  # type: ignore[import-untyped]
+from PIL import Image
 
 from doc_translation.domain.document import DocumentIR, PageIR
 
@@ -91,10 +95,33 @@ def _add_rotated_text(
     paragraph.add_run()._r.append(inline)  # type: ignore[attr-defined]
 
 
+def _add_image_mark(
+    document: DocumentObject, page: PageIR, region: object, raster_path: Path
+) -> Paragraph:
+    with Image.open(raster_path) as image:
+        box = region.box  # type: ignore[attr-defined]
+        left = round(box.x / page.geometry.width_points * image.width)
+        top = round(box.y / page.geometry.height_points * image.height)
+        right = round((box.x + box.width) / page.geometry.width_points * image.width)
+        bottom = round((box.y + box.height) / page.geometry.height_points * image.height)
+        crop = image.crop((left, top, right, bottom))
+        stream = BytesIO()
+        crop.save(stream, format="PNG")
+        stream.seek(0)
+        paragraph: Paragraph = document.add_paragraph()
+        paragraph.add_run().add_picture(
+            stream,
+            width=Inches(box.width / 72),
+            height=Inches(box.height / 72),
+        )
+        return paragraph
+
+
 def render_text_docx(
     document_ir: DocumentIR,
     translated_text: Mapping[str, str],
     output_path: Path,
+    page_rasters: Mapping[int, Path] | None = None,
 ) -> None:
     """Render supported regions as editable Word content with source page sizes."""
 
@@ -146,6 +173,17 @@ def render_text_docx(
                     bookmark_id += 1
                     rendered_region_ids.add(cell.region_id)
                 _add_bookmark(table._tbl, region_id, bookmark_id)
+                bookmark_id += 1
+            elif region.kind == "image_mark":
+                if page_rasters is None or page.page_number not in page_rasters:
+                    raise ValueError(f"missing raster for image mark: {region_id}")
+                paragraph = _add_image_mark(
+                    document,
+                    page,
+                    region,
+                    page_rasters[page.page_number],
+                )
+                _add_bookmark(paragraph._p, region_id, bookmark_id)
                 bookmark_id += 1
             else:
                 raise ValueError(f"unsupported region kind for Cycle 6.2: {region.kind}")
