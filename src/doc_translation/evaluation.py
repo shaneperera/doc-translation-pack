@@ -4,14 +4,20 @@ from __future__ import annotations
 
 import json
 import re
+import subprocess
 from pathlib import Path
 from statistics import median
+from tempfile import TemporaryDirectory
 from xml.etree import ElementTree
 from zipfile import ZipFile
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from doc_translation.adapters.docx_validation import inspect_docx
+from doc_translation.adapters.docx_validation import (
+    find_libreoffice,
+    inspect_docx,
+    roundtrip_docx,
+)
 from doc_translation.domain.critical_validation import CriticalToken
 
 WORD = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
@@ -35,6 +41,22 @@ def editability_metrics(path: Path) -> EditabilityMetrics:
         editable_text_count=inspection.editable_text_count,
         page_sized_raster_count=inspection.page_sized_raster_count,
     )
+
+
+def libreoffice_roundtrip_status(path: Path) -> str:
+    """Return passed, failed, or unavailable for an optional office round-trip."""
+
+    if find_libreoffice() is None:
+        return "unavailable"
+    with TemporaryDirectory(prefix="doc-eval-") as directory:
+        try:
+            _, reopened = roundtrip_docx(path, Path(directory))
+            inspection = inspect_docx(reopened)
+        except (OSError, RuntimeError, subprocess.CalledProcessError):
+            return "failed"
+    if inspection.editable_text_count == 0 or inspection.page_sized_raster_count:
+        return "failed"
+    return "passed"
 
 
 class ReviewedRegion(BaseModel):

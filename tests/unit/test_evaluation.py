@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import pytest
+
 from doc_translation.adapters.docx import render_text_docx
 from doc_translation.domain.critical_validation import CriticalToken
 from doc_translation.domain.document import DocumentIR, PageGeometry, PageIR
@@ -13,6 +15,7 @@ from doc_translation.evaluation import (
     critical_token_precision,
     critical_token_recall,
     editability_metrics,
+    libreoffice_roundtrip_status,
     median_anchor_iou,
     translation_anchor_accuracy,
 )
@@ -143,6 +146,14 @@ def test_editability_metrics_reports_text_and_raster_counts(tmp_path: Path) -> N
         "editable_text_count": 1,
         "page_sized_raster_count": 0,
     }
+
+
+def test_libreoffice_roundtrip_is_unavailable_without_libreoffice(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    monkeypatch.setattr("doc_translation.evaluation.find_libreoffice", lambda: None)
+
+    assert libreoffice_roundtrip_status(tmp_path / "missing.docx") == "unavailable"
 
 
 def test_translation_anchor_accuracy_compares_reviewed_text(tmp_path: Path) -> None:

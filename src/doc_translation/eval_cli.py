@@ -12,6 +12,7 @@ from doc_translation.evaluation import (
     critical_token_precision,
     critical_token_recall,
     editability_metrics,
+    libreoffice_roundtrip_status,
     median_anchor_iou,
     translation_anchor_accuracy,
 )
@@ -35,6 +36,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     print("editable_text_count: Word w:t nodes in the DOCX")
     print("page_sized_raster_count: full-page raster drawings in the DOCX")
     print("median_anchor_iou: median reviewed-box/output-box intersection-over-union")
+    print("libreoffice_roundtrip: office reopen/render/text recovery status")
 
     retention_values: list[float] = []
     anchor_values: list[float] = []
@@ -47,6 +49,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         editability = editability_metrics(path)
         audit_path = path.with_suffix(".audit.json")
         iou = median_anchor_iou(audit_path, anchors) if audit_path.exists() else None
+        roundtrip = libreoffice_roundtrip_status(path)
         retention_values.append(retention)
         anchor_values.append(anchor_accuracy)
         print(
@@ -56,7 +59,8 @@ def main(argv: Sequence[str] | None = None) -> int:
             f"critical_token_recall={token_recall:.3f} "
             f"editable_text_count={editability.editable_text_count} "
             f"page_sized_raster_count={editability.page_sized_raster_count} "
-            f"median_anchor_iou={iou if iou is not None else 'unavailable'}"
+            f"median_anchor_iou={iou if iou is not None else 'unavailable'} "
+            f"libreoffice_roundtrip={roundtrip}"
         )
     print("aggregate:")
     print(f"mean_content_retention={sum(retention_values) / len(retention_values):.3f}")

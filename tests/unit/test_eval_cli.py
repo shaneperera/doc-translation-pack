@@ -46,4 +46,5 @@ def test_evaluate_docs_prints_metric_definitions_and_values(
     assert "critical_token_precision=1.000" in captured.out
     assert "critical_token_recall=1.000" in captured.out
     assert "median_anchor_iou=unavailable" in captured.out
+    assert "libreoffice_roundtrip=unavailable" in captured.out
     assert "mean_content_retention=1.000" in captured.out
