@@ -51,6 +51,7 @@ def test_renders_editable_text_and_source_page_sizes(tmp_path: Path) -> None:
         text_nodes = document_xml.findall(f".//{WORD_NS}t")
         page_sizes = document_xml.findall(f".//{WORD_NS}pgSz")
         assert [node.text for node in text_nodes] == ["Translated ✓"]
+        assert 'w:val="22"' in etree.tostring(document_xml).decode()
         assert 'cx="1270000"' in etree.tostring(document_xml).decode()
         assert [(node.get(f"{WORD_NS}w"), node.get(f"{WORD_NS}h")) for node in page_sizes] == [
             ("6000", "10000"),
@@ -166,6 +167,32 @@ def test_renders_rotated_text_as_editable_drawingml(tmp_path: Path) -> None:
         xml_text = package.read("word/document.xml").decode()
         assert "Translated" in xml_text
         assert 'rot="2850000"' in xml_text
+
+
+def test_long_text_fails_closed_until_continuation_exists(tmp_path: Path) -> None:
+    region = RegionIR(
+        region_id="p0001-r0001",
+        kind="text",
+        box=BoundingBox(x=0, y=0, width=20, height=10),
+    )
+    document = DocumentIR(
+        source_sha256="abc123",
+        pages=[
+            PageIR(
+                page_number=1,
+                geometry=PageGeometry(width_points=100, height_points=100),
+                regions=[region],
+                reading_order=[region.region_id],
+            )
+        ],
+    )
+
+    with pytest.raises(ValueError, match="requires continuation page"):
+        render_text_docx(
+            document,
+            {region.region_id: "A very long translated label"},
+            tmp_path / "small-box.docx",
+        )
 
 
 def test_renders_image_mark_as_cropped_media(tmp_path: Path) -> None:

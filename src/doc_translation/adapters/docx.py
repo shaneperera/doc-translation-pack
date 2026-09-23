@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 from io import BytesIO
+from math import ceil
 from pathlib import Path
 
 from docx import Document
@@ -17,6 +18,9 @@ from lxml import etree  # type: ignore[import-untyped]
 from PIL import Image
 
 from doc_translation.domain.document import DocumentIR, PageIR
+
+DEFAULT_FONT_SIZE = 11
+MIN_FONT_SIZE = 7
 
 
 def _configure_page(section: object, page: PageIR) -> None:
@@ -49,6 +53,21 @@ def _text_for_region(region: object, translated_text: Mapping[str, str]) -> str:
     return translated_text.get(region_id, region.source_text or "")  # type: ignore[attr-defined]
 
 
+def _fit_font_size(text: str, width_points: float, height_points: float) -> int:
+    for font_size in range(DEFAULT_FONT_SIZE, MIN_FONT_SIZE - 1, -1):
+        characters_per_line = max(1, int(width_points / (font_size * 0.5)))
+        line_count = ceil(len(text) / characters_per_line)
+        if line_count * font_size * 1.2 <= height_points:
+            return font_size
+    return MIN_FONT_SIZE
+
+
+def _text_fits(text: str, width_points: float, height_points: float, font_size: int) -> bool:
+    characters_per_line = max(1, int(width_points / (font_size * 0.5)))
+    line_count = ceil(len(text) / characters_per_line)
+    return line_count * font_size * 1.2 <= height_points
+
+
 WPS_NS = "http://schemas.microsoft.com/office/word/2010/wordprocessingShape"
 
 
@@ -62,6 +81,7 @@ def _add_text_box(
     rotation: float,
     width_points: float,
     height_points: float,
+    font_size: int,
 ) -> None:
     inline = OxmlElement("wp:inline")
     extent = OxmlElement("wp:extent")
@@ -82,6 +102,11 @@ def _add_text_box(
     text_content = OxmlElement("w:txbxContent")
     text_paragraph = OxmlElement("w:p")
     text_run = OxmlElement("w:r")
+    run_properties = OxmlElement("w:rPr")
+    size = OxmlElement("w:sz")
+    size.set(qn("w:val"), str(font_size * 2))
+    run_properties.append(size)
+    text_run.append(run_properties)
     text_node = OxmlElement("w:t")
     text_node.text = text
     text_run.append(text_node)
@@ -142,6 +167,9 @@ def render_text_docx(
                 continue
             if region.kind == "text":
                 text = _text_for_region(region, translated_text)
+                font_size = _fit_font_size(text, region.box.width, region.box.height)
+                if not _text_fits(text, region.box.width, region.box.height, font_size):
+                    raise ValueError(f"text requires continuation page: {region_id}")
                 paragraph = document.add_paragraph()
                 _add_text_box(
                     paragraph,
@@ -149,6 +177,7 @@ def render_text_docx(
                     region.rotation,
                     region.box.width,
                     region.box.height,
+                    font_size,
                 )
                 _add_bookmark(paragraph._p, region_id, bookmark_id)
                 bookmark_id += 1
