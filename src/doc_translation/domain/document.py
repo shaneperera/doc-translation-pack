@@ -6,6 +6,7 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from doc_translation.domain.critical_validation import CriticalToken
 from doc_translation.domain.region import RegionIR
 
 
@@ -67,6 +68,8 @@ class DocumentIR(BaseModel):
     source_sha256: str = Field(min_length=1)
     pages: list[PageIR] = Field(min_length=1)
     language: str | None = None
+    critical_tokens: list[CriticalToken] = Field(default_factory=list)
+    independent_critical_tokens: list[CriticalToken] = Field(default_factory=list)
 
     @model_validator(mode="after")
     def validate_pages(self) -> DocumentIR:

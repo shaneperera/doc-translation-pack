@@ -6,9 +6,10 @@ from collections.abc import Sequence
 from pathlib import Path
 from typing import Any
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 from doc_translation.adapters.terra import call_terra
+from doc_translation.domain.critical_validation import CriticalToken
 from doc_translation.domain.document import DocumentIR, PageIR
 
 
@@ -19,6 +20,8 @@ class ExtractionResponse(BaseModel):
 
     pages: list[PageIR]
     language: str | None = None
+    critical_tokens: list[CriticalToken] = Field(default_factory=list)
+    independent_critical_tokens: list[CriticalToken] = Field(default_factory=list)
 
 
 def extract_document(
@@ -33,6 +36,8 @@ def extract_document(
         source_sha256=source_sha256,
         pages=result.parsed.pages,
         language=result.parsed.language,
+        critical_tokens=result.parsed.critical_tokens,
+        independent_critical_tokens=result.parsed.independent_critical_tokens,
     )
 
 
@@ -49,4 +54,6 @@ def extract_document_from_rasters(
         source_sha256=source_sha256,
         pages=result.parsed.pages,
         language=result.parsed.language,
+        critical_tokens=result.parsed.critical_tokens,
+        independent_critical_tokens=result.parsed.independent_critical_tokens,
     )

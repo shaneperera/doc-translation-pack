@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import os
 from collections.abc import Sequence
 from pathlib import Path
@@ -11,8 +12,13 @@ from typing import Any
 from doc_translation.adapters.docx import render_text_docx
 from doc_translation.adapters.extraction import extract_document_from_rasters
 from doc_translation.adapters.normalization import normalize_input
+from doc_translation.adapters.terra import TERRA_MODEL
 from doc_translation.adapters.translation import translate_regions
 from doc_translation.domain.content_validation import validate_content
+from doc_translation.domain.critical_validation import (
+    compare_critical_tokens,
+    validate_special_regions,
+)
 from doc_translation.domain.region import RegionIR
 
 
@@ -42,6 +48,9 @@ def translate_input(
 
     if output.exists() and not force:
         raise FileExistsError(output)
+    audit_output = output.with_suffix(".audit.json")
+    if audit_output.exists() and not force:
+        raise FileExistsError(audit_output)
 
     with TemporaryDirectory(prefix="doc-translation-") as directory:
         work_dir = Path(directory)
@@ -65,7 +74,15 @@ def translate_input(
             for region in regions
         }
         validation = validate_content(regions, delivered_text, document.language)
-        if not validation.passed:
+        diagnostics = list(validation.diagnostics)
+        diagnostics.extend(
+            compare_critical_tokens(
+                document.critical_tokens,
+                document.independent_critical_tokens,
+            )
+        )
+        diagnostics.extend(validate_special_regions(regions, delivered_text, set()))
+        if diagnostics:
             raise ValueError("content validation failed")
         rendered = work_dir / "translated.docx"
         render_text_docx(
@@ -74,5 +91,23 @@ def translate_input(
             rendered,
             {page.page_number: page.path for page in normalized.pages},
         )
+        audit = {
+            "source_sha256": document.source_sha256,
+            "target_language": target_language,
+            "model": TERRA_MODEL,
+            "regions": [
+                {
+                    "region_id": region.region_id,
+                    "source_text": region.source_text,
+                    "translated_text": delivered_text[region.region_id],
+                    "geometry": region.box.model_dump(),
+                    "status": "validated",
+                }
+                for region in regions
+            ],
+        }
+        audit_path = work_dir / "translated.audit.json"
+        audit_path.write_text(json.dumps(audit, ensure_ascii=False, indent=2))
         output.parent.mkdir(parents=True, exist_ok=True)
         os.replace(rendered, output)
+        os.replace(audit_path, audit_output)
