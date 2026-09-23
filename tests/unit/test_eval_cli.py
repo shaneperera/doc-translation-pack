@@ -48,3 +48,36 @@ def test_evaluate_docs_prints_metric_definitions_and_values(
     assert "median_anchor_iou=unavailable" in captured.out
     assert "libreoffice_roundtrip=unavailable" in captured.out
     assert "mean_content_retention=1.000" in captured.out
+
+
+def test_evaluate_docs_accepts_anchor_directory(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    region = RegionIR(
+        region_id="p0001-r0001",
+        kind="text",
+        box=BoundingBox(x=0, y=0, width=100, height=20),
+        source_text="Hallo",
+    )
+    document = DocumentIR(
+        source_sha256="abc123",
+        pages=[
+            PageIR(
+                page_number=1,
+                geometry=PageGeometry(width_points=100, height_points=100),
+                regions=[region],
+                reading_order=[region.region_id],
+            )
+        ],
+    )
+    output = tmp_path / "sample.docx"
+    render_text_docx(document, {region.region_id: "Hello"}, output)
+    anchors = tmp_path / "anchors"
+    anchors.mkdir()
+    (anchors / "sample.json").write_text(
+        '{"version": 1, "regions": '
+        '[{"region_id": "p0001-r0001", "expected_text": "Hello"}]}'
+    )
+
+    assert main(["--anchors", str(anchors), str(output)]) == 0
+    assert "content_retention=1.000" in capsys.readouterr().out

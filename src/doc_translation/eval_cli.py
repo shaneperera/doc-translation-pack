@@ -27,7 +27,6 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("docs", nargs="+", type=Path)
     args = parser.parse_args(argv)
 
-    anchors = ReviewedAnchors.model_validate_json(args.anchors.read_text())
     print("metrics:")
     print("content_retention: represented reviewed regions / reviewed regions")
     print("translation_anchor_accuracy: exact reviewed text matches / reviewed regions")
@@ -42,6 +41,12 @@ def main(argv: Sequence[str] | None = None) -> int:
     anchor_values: list[float] = []
     print("documents:")
     for path in args.docs:
+        anchor_path = (
+            args.anchors / f"{path.stem}.json"
+            if args.anchors.is_dir()
+            else args.anchors
+        )
+        anchors = ReviewedAnchors.model_validate_json(anchor_path.read_text())
         retention = content_retention(path, anchors)
         anchor_accuracy = translation_anchor_accuracy(path, anchors)
         token_precision = critical_token_precision(path, anchors.critical_tokens)
