@@ -1,0 +1,84 @@
+{
+  "name": "heidi-doc-translation-pack",
+  "version": "5.0",
+  "note": "Every PDF here is image-only: it carries no text layer, and a PDF text extractor returns an empty string. No labels ship with this pack -- deciding what to measure your output against is part of the assignment. `difficulty` is our own reading of each document and the list is in ascending order, so work down it. Sources and licences are in SOURCES.md.",
+  "documents": [
+    {
+      "id": "JPN_referral",
+      "lang": "ja",
+      "pages": 1,
+      "type": "referral letter",
+      "content": "MHLW form 11, the standard Japanese inter-hospital referral letter",
+      "difficulty": "easy",
+      "document": "documents/JPN_referral.pdf",
+      "notes": [
+        "start here",
+        "a sparse grid of ruled boxes and little else",
+        "shipped as a photocopy: greyscale, speckled, JPEG-compressed",
+        "mixed CJK and latin",
+        "footnotes set at 7pt"
+      ]
+    },
+    {
+      "id": "DEU_child_checkup",
+      "lang": "de",
+      "pages": 2,
+      "type": "child health check-up record",
+      "content": "G-BA Kinderuntersuchungsheft: the U4 check-up, history and findings",
+      "difficulty": "easy",
+      "document": "documents/DEU_child_checkup.pdf",
+      "notes": [
+        "a clean, modern, well-printed form -- the easiest scan in the pack",
+        "two pages of the same size, history then findings",
+        "checkbox pairs, and measurement fields carrying their units (g, cm)",
+        "one bulleted column beside one field column"
+      ]
+    },
+    {
+      "id": "KOR_case_report",
+      "lang": "ko",
+      "pages": 1,
+      "type": "published case report",
+      "content": "Infectious spondylodiscitis with thoracolumbar subdural abscess",
+      "difficulty": "easy",
+      "document": "documents/KOR_case_report.pdf",
+      "notes": [
+        "the only running prose in the pack, and no ruled table at all",
+        "two-column journal layout with a running header",
+        "Korean prose with latin clinical terms",
+        "a reference list that is already in English and should stay as it is"
+      ]
+    },
+    {
+      "id": "ITA_adverse_reaction",
+      "lang": "it",
+      "pages": 1,
+      "type": "adverse drug reaction report form",
+      "content": "AIFA suspected adverse reaction report, healthcare professional version",
+      "difficulty": "medium",
+      "document": "documents/ITA_adverse_reaction.pdf",
+      "notes": [
+        "numbered sections in a dense field grid",
+        "checkbox rows",
+        "sub-tables nested inside numbered sections",
+        "labels long enough to reflow and break the column widths"
+      ]
+    },
+    {
+      "id": "DEU_maternity_record",
+      "lang": "de",
+      "pages": 1,
+      "type": "maternity record",
+      "content": "G-BA Mutterpass: the Gravidogramm, the antenatal visit grid",
+      "difficulty": "hard",
+      "document": "documents/DEU_maternity_record.pdf",
+      "notes": [
+        "the hard one, but only one page of it",
+        "sixteen column headers set on the diagonal at roughly 47 degrees over a 14-row visit grid -- and two more that are horizontal, so rotating every header is wrong",
+        "a two-line watermark crossing the page at 45 degrees, which is not part of the record",
+        "grey and pale-pink cell shading",
+        "landscape and not A4 -- a pipeline that assumes A4 portrait will squash it"
+      ]
+    }
+  ]
+}

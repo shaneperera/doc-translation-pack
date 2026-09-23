@@ -1,0 +1,3 @@
+# Preserve source page parity before using continuation pages
+
+The renderer will treat each Source Page's physical size, orientation, and page count as primary layout constraints because visual correspondence is part of output quality. It may wrap text, use available whitespace, expand local bands, and reduce text no lower than 7 pt; only content that still cannot fit without omission or truncation may move to a Continuation Page. Every continuation will be explicit in the audit data and evaluation results. Always allowing extra pages would weaken source fidelity, while forbidding them would make content retention and legibility mutually incompatible for some translations.

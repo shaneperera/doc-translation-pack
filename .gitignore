@@ -1,0 +1,15 @@
+/design/
+/AGENTS.md
+/CLAUDE.md
+/GEMINI.md
+.DS_Store
+.coverage
+.env
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.venv/
+__pycache__/
+*.py[cod]
+dist/
+htmlcov/
