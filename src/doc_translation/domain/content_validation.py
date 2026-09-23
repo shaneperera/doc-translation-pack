@@ -19,6 +19,11 @@ class Diagnostic(BaseModel):
         "unexpected_region",
         "immutable_token_drift",
         "non_translatable_text_changed",
+        "critical_token_missing",
+        "critical_token_extra",
+        "relationship_drift",
+        "unreadable_marker_missing",
+        "watermark_omission_unlogged",
     ]
     severity: Literal["error", "warning"]
     page_number: int | None = None
