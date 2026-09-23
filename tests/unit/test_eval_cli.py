@@ -43,5 +43,7 @@ def test_evaluate_docs_prints_metric_definitions_and_values(
     assert "content_retention: represented reviewed regions" in captured.out
     assert "content_retention=1.000" in captured.out
     assert "translation_anchor_accuracy=1.000" in captured.out
+    assert "critical_token_precision=1.000" in captured.out
+    assert "critical_token_recall=1.000" in captured.out
     assert "median_anchor_iou=unavailable" in captured.out
     assert "mean_content_retention=1.000" in captured.out

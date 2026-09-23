@@ -54,6 +54,7 @@ class ReviewedAnchors(BaseModel):
 
     version: int = Field(ge=1)
     regions: list[ReviewedRegion] = Field(min_length=1)
+    critical_tokens: list[CriticalToken] = Field(default_factory=list)
 
 
 def median_anchor_iou(audit_path: Path, anchors: ReviewedAnchors) -> float | None:

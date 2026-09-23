@@ -9,6 +9,8 @@ from pathlib import Path
 from doc_translation.evaluation import (
     ReviewedAnchors,
     content_retention,
+    critical_token_precision,
+    critical_token_recall,
     editability_metrics,
     median_anchor_iou,
     translation_anchor_accuracy,
@@ -28,6 +30,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     print("metrics:")
     print("content_retention: represented reviewed regions / reviewed regions")
     print("translation_anchor_accuracy: exact reviewed text matches / reviewed regions")
+    print("critical_token_precision: numeric-like output tokens matching reviewed tokens")
+    print("critical_token_recall: reviewed critical tokens preserved in their regions")
     print("editable_text_count: Word w:t nodes in the DOCX")
     print("page_sized_raster_count: full-page raster drawings in the DOCX")
     print("median_anchor_iou: median reviewed-box/output-box intersection-over-union")
@@ -38,6 +42,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     for path in args.docs:
         retention = content_retention(path, anchors)
         anchor_accuracy = translation_anchor_accuracy(path, anchors)
+        token_precision = critical_token_precision(path, anchors.critical_tokens)
+        token_recall = critical_token_recall(path, anchors.critical_tokens)
         editability = editability_metrics(path)
         audit_path = path.with_suffix(".audit.json")
         iou = median_anchor_iou(audit_path, anchors) if audit_path.exists() else None
@@ -46,6 +52,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         print(
             f"{path}: content_retention={retention:.3f} "
             f"translation_anchor_accuracy={anchor_accuracy:.3f} "
+            f"critical_token_precision={token_precision:.3f} "
+            f"critical_token_recall={token_recall:.3f} "
             f"editable_text_count={editability.editable_text_count} "
             f"page_sized_raster_count={editability.page_sized_raster_count} "
             f"median_anchor_iou={iou if iou is not None else 'unavailable'}"
