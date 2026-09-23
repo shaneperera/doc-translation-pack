@@ -4,7 +4,6 @@ from doc_translation.domain.critical_validation import (
     UNREADABLE_MARKER,
     CriticalToken,
     compare_critical_tokens,
-    compare_relationships,
     validate_special_regions,
 )
 from doc_translation.domain.region import BoundingBox, RegionIR
@@ -43,17 +42,6 @@ def test_critical_inventory_difference_reports_missing_and_extra() -> None:
         "critical_token_missing",
         "critical_token_extra",
     ]
-
-
-def test_relationship_difference_reports_parent_drift() -> None:
-    diagnostics = compare_relationships(
-        [_region(parent_region_id="p0001-r0002")],
-        [_region(parent_region_id="p0001-r0003")],
-    )
-
-    assert diagnostics[0].code == "relationship_drift"
-    assert diagnostics[0].expected == "p0001-r0002"
-    assert diagnostics[0].observed == "p0001-r0003"
 
 
 def test_special_regions_require_marker_and_watermark_log() -> None:

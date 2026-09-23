@@ -71,31 +71,6 @@ def compare_critical_tokens(
     return diagnostics
 
 
-def compare_relationships(
-    source_regions: list[RegionIR],
-    translated_regions: list[RegionIR],
-) -> list[Diagnostic]:
-    """Report a changed parent relationship for a shared region ID."""
-
-    source_by_id = {region.region_id: region for region in source_regions}
-    translated_by_id = {region.region_id: region for region in translated_regions}
-    diagnostics: list[Diagnostic] = []
-    for region_id in sorted(set(source_by_id) & set(translated_by_id)):
-        expected = source_by_id[region_id].parent_region_id
-        observed = translated_by_id[region_id].parent_region_id
-        if expected != observed:
-            diagnostics.append(
-                Diagnostic(
-                    code="relationship_drift",
-                    severity="error",
-                    region_id=region_id,
-                    expected=expected,
-                    observed=observed,
-                )
-            )
-    return diagnostics
-
-
 def validate_special_regions(
     regions: list[RegionIR],
     translated_text: dict[str, str],
